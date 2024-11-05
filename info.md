@@ -24,16 +24,16 @@ LET 410 UVP-E20 hasta 19 pasajeros (1,800 kg)
 (b) Cessna208Caravan (9 pasajeros)
 (c) LET410UVP-E20 (19 pasajeros)
 
-En caso de encomienda, el cliente debe hacer entrega de la encomienda en el aer´odromo La
-Paloma, indicar el destino y el personal calcular´a el precio de acuerdo al peso y destinaci´on,
+En caso de encomienda, el cliente debe hacer entrega de la encomienda en el aerodromo La
+Paloma, indicar el destino y el personal calculara el precio de acuerdo al peso y destinacion,
 entregando la fecha de entrega de acuerdo a los vuelos disponibles y la capacidad de carga de cada
-avi´on.
-En cualquiera de ambos casos, el asistente informar´a al cliente el precio para confirmaci´on de
-reserva y se proceder´a al pago del servicio indicando el medio de pago y se realizar´a el registro
+avion.
+En cualquiera de ambos casos, el asistente informara al cliente el precio para confirmacion de
+reserva y se procedera al pago del servicio indicando el medio de pago y se realizara el registro
 de ventas de servicio. Existe un descuento de un 10 % que se puede aplicar a los clientes que han
-realizado m´as de 10 vuelos. En caso de existir estado de emergencia, se puede obviar el pago de
+realizado mas de 10 vuelos. En caso de existir estado de emergencia, se puede obviar el pago de
 pasaje a personal de emergencias.
 El gerente de AeroChinquihue puede revisar el resumen de ventas diarios y la cantidad de
-vuelos en servicio con su disponibilidad. Adem´as, el gerente tiene la potestad de incluir los vuelos
+vuelos en servicio con su disponibilidad. Ademas, el gerente tiene la potestad de incluir los vuelos
 extraordinarios por motivos urgentes. En casos muy excepcionales, el gerente puede indicar un
 descuento (hasta 100 %) superior a clientes en casos extremos

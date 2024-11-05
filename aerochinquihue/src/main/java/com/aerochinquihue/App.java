@@ -19,20 +19,18 @@ public class App extends Application {
     @SuppressWarnings("exports")
     @Override
     public void start(Stage stage) throws IOException {
-                //Opcion 2
-                VBox caja = new VBox();
-                GridPane Grid = new GridPane();
-                Label text1 = new Label("Test01");
+        VBox caja = new VBox();
+        GridPane Grid = new GridPane();
+        Label text1 = new Label("punto de prueba :P");
                 
-                Grid.add(text1, 0, 0);
-                /*
-                 * gestion del gui
-                 */
-        
-        
-                scene = new Scene(caja, 400, 300);
-                stage.setScene(scene);
-                stage.show();
+        Grid.add(text1, 0, 0);
+        /*
+         * gestion del gui
+        */
+        caja.getChildren().addAll(Grid,text1);
+        scene = new Scene(caja, 400, 300);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
@@ -41,3 +39,10 @@ public class App extends Application {
     }
 
 }
+/*
+ * hashMap para guardar los datos de encargo
+ * import  java.util.HashMap;
+ * HashMap<objeto,objeto> encargo = new HashMap<objeto,objeto>
+ * 
+
+ */
