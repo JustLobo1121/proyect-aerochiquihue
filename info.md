@@ -1,4 +1,4 @@
-La siguiente tabla de pasajes y env´ıos de acuerdo a cada destino:
+La siguiente tabla de pasajes y envıos de acuerdo a cada destino:
 Destino         Precio Pasaje (por persona) - Precio Encomienda (cada kg)
 Cochamo         20.000                      - 5.000
 Puelo Bajo      20.000                      - 5.000
