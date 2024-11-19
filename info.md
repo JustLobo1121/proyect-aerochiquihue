@@ -1,28 +1,24 @@
 La siguiente tabla de pasajes y envıos de acuerdo a cada destino:
-Destino         Precio Pasaje (por persona) - Precio Encomienda (cada kg)
-Cochamo         20.000                      - 5.000
-Puelo Bajo      20.000                      - 5.000
-Contao          20.000                      - 5.000
-Rio Negro       25.000                      - 6.000
-Pupelde         25.000                      - 6.000
-Chepu           30.000                      - 8.000
-Ayacara         30.000                      - 8.000
-Pillan          40.000                      - 12.000
-Renihue         40.000                      - 12.000
-Isla Quenac     40.000                      - 12.000
-Palqui          40.000                      - 12.000
-Chaiten         50.000                      - 15.000
-Santa Barbara   50.000                      - 15.000
+id      Destino         - Precio Pasaje (por persona) - Precio Encomienda (cada kg)
+0       0               - 0                           - 0
+~       Cochamo         - 20.000                      - 5.000
+~       Puelo Bajo      - 20.000                      - 5.000
+~       Contao          - 20.000                      - 5.000
+~       Rio Negro       - 25.000                      - 6.000
+~       Pupelde         - 25.000                      - 6.000
+~       Chepu           - 30.000                      - 8.000
+~       Ayacara         - 30.000                      - 8.000
+~       Pillan          - 40.000                      - 12.000
+~       Renihue         - 40.000                      - 12.000
+~       Isla Quenac     - 40.000                      - 12.000
+~       Palqui          - 40.000                      - 12.000
+~       Chaiten         - 50.000                      - 15.000
+~       Santa Barbara   - 50.000                      - 15.000
 
 Existen (cuatro?) tipos de avion: 
 CESSNA 310 hasta 5 pasajeros (910kg)
 CESSNA 208 CARAVAN hasta 9 (1.315kg) 
 LET 410 UVP-E20 hasta 19 pasajeros (1,800 kg)
-
-1
-(a) Cessna310 (6 pasajeros)
-(b) Cessna208Caravan (9 pasajeros)
-(c) LET410UVP-E20 (19 pasajeros)
 
 En caso de encomienda, el cliente debe hacer entrega de la encomienda en el aerodromo La
 Paloma, indicar el destino y el personal calculara el precio de acuerdo al peso y destinacion,

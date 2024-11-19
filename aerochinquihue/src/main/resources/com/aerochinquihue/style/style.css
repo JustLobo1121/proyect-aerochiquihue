@@ -1,0 +1,12 @@
+.tab .tab-header-content .tab {}.tab-pane {
+    -fx-background-color: #f0f0f0; /* Fondo del TabPane */
+}
+
+.tab-pane .tab-header-area .tab {
+    -fx-pref-width: 150px; /* Ancho de cada pestaña */
+    -fx-background-color: #d3d3d3; /* Color de fondo de cada pestaña */
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: #ffffff; /* Fondo del área de contenido */
+}
