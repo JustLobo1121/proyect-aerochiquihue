@@ -1,6 +1,6 @@
 package com.aerochinquihue;
 
-import com.aerochinquihue.controller.Controller;
+import com.aerochinquihue.controller.ControllerConfigurable;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    @SuppressWarnings("exports")
     public Stage Rstage;
 
     @SuppressWarnings("exports")
@@ -31,11 +32,16 @@ public class App extends Application {
         Rstage.setScene(scene);
         Rstage.show();
     }
-    public void switchScene(String fxml, int width, int height) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+    public void switchScene(String root, int width, int height, Object data) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(root));
         Parent newRoot = loader.load();
         Scene newScene = new Scene(newRoot, width, height);
         
+        Object controller = loader.getController();
+        
+        if (controller instanceof ControllerConfigurable) {
+            ((ControllerConfigurable) controller).configureController(data);
+        }
         Rstage.setScene(newScene);
     }
 
