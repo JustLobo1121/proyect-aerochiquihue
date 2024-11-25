@@ -2,26 +2,17 @@ public class Avion {
 
     protected double precio;
     protected int pasajeros;
-    private int asientos[][];
-    private int asientoIndividual[][];
-    private int numeroAsiento[]={};
+    private int[][] asientos; 
     private int x, y, pos;
 
-
-    public Avion(int[][] asientoIndividual, int[][] asientos, int pasajeros, int pos, double precio, int x, int y) {
-        this.asientoIndividual = asientoIndividual;
+    public Avion(int[][] asientos, int pasajeros, double precio, int x, int y) {
         this.asientos = asientos;
         this.pasajeros = pasajeros;
-        this.pos = pos;
         this.precio = precio;
         this.x = x;
         this.y = y;
     }
-    
-    public Avion(){
-        this.pasajeros = 0;
-        this.precio = 0;
-    }
+
     public double getPrecio() {
         return precio;
     }
@@ -39,18 +30,6 @@ public class Avion {
     }
     public void setAsientos(int[][] asientos) {
         this.asientos = asientos;
-    }
-    public int[][] getAsientoIndividual() {
-        return asientoIndividual;
-    }
-    public void setAsientoIndividual(int[][] asientoIndividual) {
-        this.asientoIndividual = asientoIndividual;
-    }
-    public int[] getNumeroAsiento() {
-        return numeroAsiento;
-    }
-    public void setNumeroAsiento(int[] numeroAsiento) {
-        this.numeroAsiento = numeroAsiento;
     }
     public int getX() {
         return x;
@@ -70,52 +49,46 @@ public class Avion {
     public void setPos(int pos) {
         this.pos = pos;
     }
-    
 
-
-    public void asignarAsiento(int x, int y, int asientoIndividual[][], int asiento[][]){
-        boolean verificar;
-        if(asiento[x][y]==0){
-            asiento[x][y]=1;
-            verificar = true;
-        } else if(asiento[x][y] == 1){
-            verificar = false;
+    public boolean asignarAsiento(int x, int y) {
+        if (asientos[x][y] == 0) {
+            asientos[x][y] = 1;
+            return true; 
         }
-        if(asientoIndividual[x][y]==0){
-            asientoIndividual[x][y]=1;
-            verificar = true;
-        } else if(asientoIndividual[x][y] == 1){
-            verificar = false;
-        }
-    }
-    public boolean verificarAsiento(int x, int y, int asientoIndividual[][], int asiento[][]){
-        boolean verificar;
-        if(asiento[x][y]==1){
-            verificar = false;
-        }
-        if(asientoIndividual[x][y]==1){
-            verificar = false;
-        }
-        return verificar;
-    }
-    //Revisar verificacion
-    
-    
-    public void seleccionarAvionDisponibilidad(){
-        asignarAsiento(x, y, asientoIndividual, asientos);
-
-        switch (pos) {
-            case 1:
-                this.asientos=asientos.clone(); 
-                break;
-            case 2:
-                this.asientoIndividual=asientoIndividual.clone();
-                break;
-        }
-        
+        return false; 
     }
 
-    //Revisar asientos
+    
+    public boolean verificarAsiento(int x, int y) {
+        return asientos[x][y] == 1; 
+    }
+
+   
+    public boolean asignarAsientoIndividual(int x, int y) {
+        if (asientos[x][y] == 0) { 
+            asientos[x][y] = 2; 
+            return true;
+        }
+        return false; 
+    }
+
+   
+    public boolean esAsientoIndividual(int x, int y) {
+        return asientos[x][y] == 2; 
+    }
+
+   
+    public void mostrarAsientos() {
+        for (int i = 0; i < asientos.length; i++) {
+            for (int j = 0; j < asientos[i].length; j++) {
+                System.out.print(asientos[i][j] + " "); 
+            }
+            System.out.println();
+        }
+    }
+
     @Override
     public String toString() {
-        return "Precio: " + precio + "Pasajeros: " + pasajeros + "Asientos: " + asientos + "Asientos individuales" + asientoIndividual + "N: " + numeroAsiento; }
+        return "Precio: " + precio + ", Pasajeros: " + pasajeros;
+    }
+}

@@ -3,11 +3,26 @@ public class Vuelo extends Viajes{
     protected int id;
     protected int pasajeros;
 
-    
+    public Vuelo(int id, int pasajeros) {
+        this.id = id;
+        this.pasajeros = pasajeros;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getPasajeros() {
+        return pasajeros;
+    }
+    public void setPasajeros(int pasajeros) {
+        this.pasajeros = pasajeros;
+    }
 
 
-    
-    
+
     public int calcularPrecios() {
         int precioPorDestino;
 
@@ -51,8 +66,31 @@ public class Vuelo extends Viajes{
         return pasajeros * precioPorKg;
     }
 
+    @Override
+    public double calcularPrecio() {
+        return calcularPrecios(); 
+    }
+
+    @Override
+    public boolean estaOcupado(int fila, int columna) {
+        return false;
+    }
     
-    
+    @Override
+    public boolean reservar(int fila, int columna) {
+        return false;
+    }
+
+    @Override
+    public boolean registroPago() {
+        System.out.println("Procesando pago...");
+        return true; 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Pasajero(s): " + pasajeros + " | ID: " + id;
+    }
 
 
     
