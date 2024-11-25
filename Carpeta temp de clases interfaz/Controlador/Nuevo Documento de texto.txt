@@ -1,0 +1,13 @@
+- controlador de boleta 
+- controlador catalogo
+- asientos
+- ingresos avion
+- ingresos encomienda
+- menu
+- persona
+- gerente
+- asistente
+- metodos
+ 
+
+
