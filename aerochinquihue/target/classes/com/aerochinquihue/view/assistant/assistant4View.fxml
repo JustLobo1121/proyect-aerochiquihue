@@ -75,7 +75,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="25.0" layoutY="41.0" mnemonicParsing="false" text="Pagar">
+            <Button layoutX="25.0" layoutY="41.0" mnemonicParsing="false" text="Pagar" onAction="#handlePay">
                <font>
                   <Font size="18.0" />
                </font>

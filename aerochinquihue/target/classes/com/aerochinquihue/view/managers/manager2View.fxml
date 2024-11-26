@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="412.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.aerochinquihue.controller.managerController" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="412.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aerochinquihue.controller.managerController">
    <top>
       <Label text="Lista de Vuelos Disponibles:" BorderPane.alignment="CENTER">
          <font>
@@ -39,6 +39,7 @@
             <TableColumn prefWidth="75.0" text="Destinos" />
             <TableColumn prefWidth="75.0" text="Avion" />
             <TableColumn prefWidth="75.0" text="Precio" />
+            <TableColumn prefWidth="75.0" text="Tipo" />
          </columns>
       </TableView>
    </center>

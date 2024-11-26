@@ -11,12 +11,12 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 public class App extends Application {
+    private static Object currentController;
     @SuppressWarnings("exports")
     public Stage Rstage;
 
-    @SuppressWarnings("exports")
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(@SuppressWarnings("exports") Stage stage) throws Exception {
         this.Rstage = stage;
         stage.setUserData(this);
         loadStartView();
@@ -32,15 +32,16 @@ public class App extends Application {
         Rstage.setScene(scene);
         Rstage.show();
     }
+    public Object getController() {
+        return currentController;
+    }
     public void switchScene(String root, int width, int height, Object data) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(root));
         Parent newRoot = loader.load();
         Scene newScene = new Scene(newRoot, width, height);
-        
-        Object controller = loader.getController();
-        
-        if (controller instanceof ControllerConfigurable) {
-            ((ControllerConfigurable) controller).configureController(data);
+        currentController = loader.getController();
+        if (currentController instanceof ControllerConfigurable) {
+            ((ControllerConfigurable) currentController).configureController(data);
         }
         Rstage.setScene(newScene);
     }

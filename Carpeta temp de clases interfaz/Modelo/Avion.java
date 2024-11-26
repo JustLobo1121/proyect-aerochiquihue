@@ -118,4 +118,5 @@ public class Avion {
     //Revisar asientos
     @Override
     public String toString() {
-        return "Precio: " + precio + "Pasajeros: " + pasajeros + "Asientos: " + asientos + "Asientos individuales" + asientoIndividual + "N: " + numeroAsiento; }
+        return "Precio: " + precio + "Pasajeros: " + pasajeros + "Asientos: " + asientos + "Asientos individuales" + asientoIndividual + "N: " + numeroAsiento; } 
+    }

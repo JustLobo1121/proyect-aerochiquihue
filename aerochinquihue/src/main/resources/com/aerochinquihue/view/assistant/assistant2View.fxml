@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -65,7 +66,7 @@
                   <Font size="15.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="boton03" layoutX="105.0" layoutY="160.0" mnemonicParsing="false" text="LET 410 UVP-E20" textAlignment="JUSTIFY" toggleGroup="$group">
+            <RadioButton fx:id="boton03" layoutX="105.0" layoutY="160.0" mnemonicParsing="false"  text="LET 410 UVP-E20" textAlignment="JUSTIFY" toggleGroup="$group">
                <font>
                   <Font size="15.0" />
                </font>
@@ -87,11 +88,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField prefHeight="25.0" prefWidth="348.0" promptText="01/02/03">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
+            <DatePicker fx:id="datePicker1" promptText="01/02/2024" />
             <Label layoutX="25.0" layoutY="10.0" text="Destinos:">
                <font>
                   <Font size="18.0" />

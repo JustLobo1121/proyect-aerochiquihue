@@ -1,0 +1,9 @@
+com\aerochinquihue\controller\Controller.class
+com\aerochinquihue\controller\ControllerConfigurable.class
+com\aerochinquihue\Avion.class
+module-info.class
+com\aerochinquihue\App.class
+com\aerochinquihue\model\Model.class
+com\aerochinquihue\controller\assistantController.class
+com\aerochinquihue\model\AssistantData.class
+com\aerochinquihue\controller\managerController.class
