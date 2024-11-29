@@ -1,10 +1,41 @@
 public class Cessna extends Avion {
 
-    public Cessna() {
+    public Caravan(int asientos[][], int pasajeros, int pos, double precio, int x, int y) {
+        super(asientos, pasajeros, pos, precio, x, y);
     }
 
-    public Cessna(int[][] asientoIndividual, int[][] asientos, int pasajeros, int pos, double precio, int x, int y) {
-        super(asientoIndividual, asientos, pasajeros, pos, precio, x, y);
+    public Caravan() {
+        super(); 
+        this.pasajeros = 5; 
+        this.precio = 9.10; 
+        this.x = 0; 
+        this.y = 0; 
+        this.asientos = new int[x][y]; 
+        this.asientoIndividual = new int[x][y]; 
+    }
+
+    public void organizarAsientos() {
+        // Usamos un for para recorrer todos los asientos y organizarlos
+        for (int i = 0; i < asientos.length; i++) {
+            for (int j = 0; j < asientos[i].length; j++) {
+                if (asientos[i][j] == 0) {
+                    if (i == 0 && j == 0) {
+                        asientos[i][j] = 2; 
+                    } else {
+                        asientos[i][j] = 0; 
+                    }
+                }
+            }
+        }
+    }
+
+    public void mostrarAsientos() {
+        for (int i = 0; i < asientos.length; i++) {
+            for (int j = 0; j < asientos[i].length; j++) {
+                System.out.print(asientos[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
     

@@ -51,8 +51,3 @@ public class App extends Application {
     }
 
 }
-/*
- * hashMap para guardar los datos de encargo
- * import  java.util.HashMap;
- * HashMap<objeto,objeto> encargo = new HashMap<objeto,objeto>
- */
