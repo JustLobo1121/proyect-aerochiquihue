@@ -1,5 +1,4 @@
 public class Avion {
-
     protected double precio;
     protected int pasajeros;
     private int[][] asientos; 

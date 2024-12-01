@@ -1,12 +1,20 @@
-.tab .tab-header-content .tab {}.tab-pane {
-    -fx-background-color: #f0f0f0; /* Fondo del TabPane */
+.button {
+    -fx-border-color: black;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
 
-.tab-pane .tab-header-area .tab {
-    -fx-pref-width: 150px; /* Ancho de cada pestaña */
-    -fx-background-color: #d3d3d3; /* Color de fondo de cada pestaña */
+.button:hover {
+    -fx-background-color: lightgreen;
 }
 
-.tab-pane .tab-content-area {
-    -fx-background-color: #ffffff; /* Fondo del área de contenido */
+.button:pressed {
+    -fx-background-color: darkgreen;
+}
+
+.grid-pane {
+    -fx-background-color: white;
+    -fx-border-color: lightgray;
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
 }
