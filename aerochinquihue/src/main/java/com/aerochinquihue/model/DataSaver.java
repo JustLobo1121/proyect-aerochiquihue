@@ -13,7 +13,8 @@ public class DataSaver {
                 assistantData.getTelefono() + "," + assistantData.getRut() + "," + 
                 assistantData.getDireccion() + "," + assistantData.getDestino() + "," + 
                 assistantData.getFecha() + "," + assistantData.getAvionSel() + "," + 
-                assistantData.getTipoEncomienda() + "," + hashVuelo
+                assistantData.getTipoEncomienda() + "," + assistantData.getPeso() + "," + 
+                assistantData.getAsiento() + hashVuelo
                 );
             writer.newLine();
             System.out.println("Datos guardados exitosamente");

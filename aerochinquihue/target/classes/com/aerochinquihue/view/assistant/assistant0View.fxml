@@ -242,7 +242,7 @@
             </VBox>
          </right>
       </BorderPane>
-      <BorderPane id="datosPane" fx:id="view03" prefHeight="363.0" prefWidth="600.0" visible="false">
+      <BorderPane id="datosPane" fx:id="view03" prefHeight="363.0" prefWidth="600.0">
          <bottom>
             <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
@@ -285,7 +285,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
@@ -335,7 +335,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <TextField editable="false" promptText="blank">
+                        <TextField fx:id="costeTotal" editable="false" promptText="blank">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -345,19 +345,14 @@
                         <Insets left="15.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                  <HBox fx:id="HboxMetodos" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                      <children>
                         <Label text="Medio de pago:">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <ChoiceBox prefWidth="150.0" />
-                        <TextField promptText="1234 5678 8901 2345">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </TextField>
+                        <ChoiceBox fx:id="choiceBoxMetodos" prefWidth="150.0" />
                      </children>
                      <padding>
                         <Insets left="15.0" />

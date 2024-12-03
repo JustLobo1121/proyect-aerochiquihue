@@ -11,6 +11,7 @@ import com.aerochinquihue.App;
 import com.aerochinquihue.model.AssistantData;
 import com.aerochinquihue.model.Avion;
 import com.aerochinquihue.model.DataSaver;
+import com.aerochinquihue.model.TotalCost;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -24,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class assistantController implements ControllerConfigurable {
@@ -42,11 +44,14 @@ public class assistantController implements ControllerConfigurable {
     @FXML private VBox extrasEncomienda;
     @FXML private TextField TextFieldNombre,TextFieldApellidos,TextFieldTelefonos;
     @FXML private TextField TextFieldRut,TextFieldDireccion,TextFieldPeso,TextFieldAvion;
+    @FXML private TextField costeTotal; // zona metodo de pago
+    @FXML private ChoiceBox <String>choiceBoxMetodos; // zona metodo de pago
+    @FXML private HBox HboxMetodos; // zona metodo de pago
     @FXML private DatePicker datePicker1;
     @FXML private ToggleGroup group;
     @FXML private RadioButton boton01,boton02,boton03;
     @FXML private ChoiceBox <String>destinos;
-    public String[] destinosA = {"Cochamo","Pueblo Bajo","Contao","Rio Negro","Pupelde","Chepu","Ayacara","Pillan","Renihue","Isla Quenac","Palqui","Chaiten","Santa Barbara"};
+    public String[] destinosA = {"Cochamo","Puelo Bajo","Contao","Rio Negro","Pupelde","Chepu","Ayacara","Pillan","Renihue","Isla Quenac","Palqui","Chaiten","Santa Barbara"};
     @FXML private GridPane seatGrid;
     @FXML public void handleMainView(ActionEvent event) {
         switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
@@ -193,19 +198,37 @@ public class assistantController implements ControllerConfigurable {
                 }
             }
         }
-    
+
         asientosOcupadosPorVuelo.put(claveVuelo, asientosOcupados);
-        System.out.println("Asientos ocupados para " + claveVuelo + ": " + asientosOcupados);
-    }
-    @FXML public void handleAssistant4View(ActionEvent event) {
-        int validado = 0;
-        if (validado == 0) {
-            this.view00.setVisible(false);
-            this.view01.setVisible(false);
-            this.view02.setVisible(false);
-            this.view03.setVisible(false);
-            this.view04.setVisible(true);
+        StringBuilder asientosSeleccionados = new StringBuilder();
+        for (String asiento : asientosOcupados) {
+            asientosSeleccionados.append(asiento).append(" ");
         }
+        this.assistantData.setAsiento(String.valueOf(asientosSeleccionados.length()));
+        System.out.println("Asientos ocupados para " + claveVuelo + ": " + asientosOcupados);
+
+    }
+    
+    @FXML public void handleAssistant4View(ActionEvent event) {
+        if (this.costeTotal != null) {
+            if (this.assistantData.getTipoEncomienda().equals("Viaje")) {
+                TotalCost costo = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getAsiento()),this.assistantData.getTipoEncomienda());
+                int valorTotal = costo.getTotal();
+                System.out.println("valortotal: "+ valorTotal);
+                costeTotal.setText(String.valueOf(valorTotal));
+            } else {
+                TotalCost costo = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getPeso()),this.assistantData.getTipoEncomienda());
+                int valorTotal = costo.getTotal();
+                System.out.println("valortotal: "+ valorTotal);
+                costeTotal.setText(String.valueOf(valorTotal));
+            }
+            
+        }
+        this.view00.setVisible(false);
+        this.view01.setVisible(false);
+        this.view02.setVisible(false);
+        this.view03.setVisible(false);
+        this.view04.setVisible(true);
     }
     
     @FXML public void initialize() {
@@ -308,6 +331,7 @@ public class assistantController implements ControllerConfigurable {
     }
     
     private void generateSeat(Avion avion, GridPane contenedor) {
+        
         contenedor.getChildren().clear();
         String claveVuelo = generateHash(assistantData.getFecha(), assistantData.getDestino(), assistantData.getAvionSel());
         Set<String> asientosOcupados = asientosOcupadosPorVuelo.getOrDefault(claveVuelo, new HashSet<>());
@@ -322,6 +346,7 @@ public class assistantController implements ControllerConfigurable {
                 String idAsiento = "A" + (fila + 1) + (asiento + 1);
                 Button botonAsiento = new Button(idAsiento);
                 botonAsiento.setPrefSize(40, 40);
+
     
                 if (asientosOcupados.contains(idAsiento)) {
                     botonAsiento.setStyle("-fx-background-color: red;");
@@ -339,7 +364,8 @@ public class assistantController implements ControllerConfigurable {
                         }
                     });
                 }
-                contenedor.add(botonAsiento, columnaInicial + asiento, filaActual);
+                // contenedor.addRow(1,botonAsiento);
+                contenedor.add(botonAsiento,filaActual , asiento);
             }
             filaActual++;
         }

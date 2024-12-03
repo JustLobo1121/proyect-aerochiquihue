@@ -6,6 +6,7 @@ import java.util.Formatter;
 
 public class AssistantData {
     private String nombre, apellidos, telefono, rut, direccion, destino, tipoEncomienda, peso, fecha,avionSel;
+    private String asiento;
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
@@ -36,6 +37,9 @@ public class AssistantData {
 
     public String getAvionSel() { return avionSel; }
     public void setAvion(String avionSel) { this.avionSel = avionSel; }
+    
+    public String getAsiento() { return asiento; }
+    public void setAsiento(String asientos) { this.asiento = asientos; }
 
     public String generateHash() {
         try {
