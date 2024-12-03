@@ -11,6 +11,7 @@ public class Controller implements ControllerConfigurable {
     public final String sceneManager0 = "view/managers/manager0View.fxml";
     public final String sceneAssistant0 = "view/assistant/assistant0View.fxml";
 
+
     @FXML
     public void handleManagerView(ActionEvent event) {
         switchScene(event, sceneManager0, "Sistema Principal de gerentes - AeroChinquihue", 600, 400);

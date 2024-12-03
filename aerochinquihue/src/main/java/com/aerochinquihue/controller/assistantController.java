@@ -371,6 +371,7 @@ public class assistantController implements ControllerConfigurable {
         }
     }
     
+    
     private String generateHash(String fecha, String destino, String avion) {
         return fecha + "_" + destino + "_" + avion;
     }

@@ -1,6 +1,0 @@
-- boleta
-- main
-- viajes
-- vuelo
-- encomienda
-- aviones
