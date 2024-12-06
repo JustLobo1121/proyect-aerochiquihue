@@ -42,25 +42,15 @@
             </VBox>
          </center>
       </BorderPane>
-      <BorderPane id="datosPane" fx:id="view01" prefHeight="363.0" prefWidth="600.0" visible="false">
+      <BorderPane id="datosPane" fx:id="view01" prefHeight="363.0" prefWidth="600.0">
          <bottom>
-            <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
                   <Button mnemonicParsing="false" onAction="#handleAssistant0View" text="Volver">
                      <font>
                         <Font size="19.0" />
                      </font>
                   </Button>
-                  <VBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="357.0">
-                     <children>
-                        <Label text="Direccion:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="TextFieldDireccion" prefHeight="25.0" prefWidth="348.0" />
-                     </children>
-                  </VBox>
                   <Button layoutX="25.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleAssistant2View" text="Continuar">
                      <font>
                         <Font size="19.0" />
@@ -106,6 +96,16 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
+                  <VBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="357.0">
+                     <children>
+                        <Label text="Direccion:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TextFieldDireccion" prefHeight="25.0" prefWidth="348.0" />
+                     </children>
+                  </VBox>
                </children>
                <padding>
                   <Insets left="15.0" right="15.0" />
@@ -123,7 +123,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="TextFieldTelefonos" prefHeight="25.0" prefWidth="348.0" promptText="+56 9 1234 5678">
+                  <TextField fx:id="TextFieldTelefonos" prefHeight="25.0" prefWidth="348.0" promptText="9 1234 5678">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -242,7 +242,7 @@
             </VBox>
          </right>
       </BorderPane>
-      <BorderPane id="datosPane" fx:id="view03" prefHeight="363.0" prefWidth="600.0">
+      <BorderPane id="datosPane" fx:id="view03" prefHeight="363.0" prefWidth="600.0" visible="false">
          <bottom>
             <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
@@ -369,12 +369,12 @@
                         <Font size="19.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Emergencia">
+                  <Button mnemonicParsing="false" onAction="#handleEmergency" text="Emergencia">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="descuentos" layoutX="157.0" layoutY="41.0" mnemonicParsing="false" text="Descuento">
+                  <Button layoutX="157.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleDiscount" text="Descuento">
                      <font>
                         <Font size="18.0" />
                      </font>

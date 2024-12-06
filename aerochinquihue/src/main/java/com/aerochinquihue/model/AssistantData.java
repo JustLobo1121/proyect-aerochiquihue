@@ -5,8 +5,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 public class AssistantData {
-    private String nombre, apellidos, telefono, rut, direccion, destino, tipoEncomienda, peso, fecha,avionSel;
-    private String asiento;
+    private String nombre, apellidos, telefono, rut, direccion, destino, tipoEncomienda, peso, fecha,avionSel, asiento;
+    private Boolean emergencia;
+    private int descuento, valorFinal;
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
@@ -40,6 +41,14 @@ public class AssistantData {
     
     public String getAsiento() { return asiento; }
     public void setAsiento(String asientos) { this.asiento = asientos; }
+    public boolean isEmergencia() { return emergencia; }
+    public void setEmergencia(boolean emergencia) { this.emergencia = emergencia; }
+
+    public int getDescuento() { return descuento; }
+    public void setDescuento(int descuento) { this.descuento = descuento; }
+
+    public int getValorFinal() { return valorFinal; }
+    public void setValorFinal(int valorFinal) { this.valorFinal = valorFinal; }
 
     public String generateHash() {
         try {
