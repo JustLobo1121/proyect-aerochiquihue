@@ -8,18 +8,18 @@ import javafx.scene.Node;
 
 public class Controller implements ControllerConfigurable {
     public final String sceneMain = "view/mainView.fxml";
-    public final String sceneManager0 = "view/managers/manager0View.fxml";
-    public final String sceneAssistant0 = "view/assistant/assistant0View.fxml";
+    public final String sceneManager = "view/managers/managerView.fxml";
+    public final String sceneAssistant = "view/assistant/assistantView.fxml";
 
 
     @FXML
     public void handleManagerView(ActionEvent event) {
-        switchScene(event, sceneManager0, "Sistema Principal de gerentes - AeroChinquihue", 600, 400);
+        switchScene(event, sceneManager, "Sistema Principal de gerentes - AeroChinquihue", 600, 400);
     }
 
     @FXML
     public void handleAssistantView(ActionEvent event) {
-        switchScene(event, sceneAssistant0, "Sistema Principal de asistentes - AeroChinquihue", 600, 400);
+        switchScene(event, sceneAssistant, "Sistema Principal de asistentes - AeroChinquihue", 600, 400);
     }
 
     @FXML

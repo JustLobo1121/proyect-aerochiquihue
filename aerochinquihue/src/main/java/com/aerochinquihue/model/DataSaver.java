@@ -14,7 +14,8 @@ public class DataSaver {
                 assistantData.getDireccion() + "," + assistantData.getDestino() + "," + 
                 assistantData.getFecha() + "," + assistantData.getAvionSel() + "," + 
                 assistantData.getTipoEncomienda() + "," + assistantData.getPeso() + "," + 
-                assistantData.getAsiento() + hashVuelo
+                assistantData.isEmergencia() + "," + assistantData.getAsiento() + "," + 
+                hashVuelo
                 );
             writer.newLine();
             System.out.println("Datos guardados exitosamente");

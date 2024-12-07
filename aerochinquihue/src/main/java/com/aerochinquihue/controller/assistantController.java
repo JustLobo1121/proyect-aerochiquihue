@@ -43,13 +43,11 @@ public class assistantController implements ControllerConfigurable {
     private int Total = 0;
     public int opcion; /* 1=viaje | 2=encomienda */
     public final String sceneMain = "view/mainView.fxml";
-
     /*    0          1          2       3           4
      *  view00 ->  view01 -> view02 -> view03 -> view04 viajes
      *         ->  view01 -> view02 -> view04 encomienda
      * volver = cancelar encomienda/viaje
     */
-
     @FXML private BorderPane view00,view01,view02,view03,view04;
     @FXML private VBox extrasEncomienda;
     @FXML private TextField TextFieldNombre,TextFieldApellidos,TextFieldTelefonos;
@@ -276,7 +274,7 @@ public class assistantController implements ControllerConfigurable {
                         break;
                     case "Transferencia":
                         break;
-                        case "Credito Corporativo":
+                    case "Credito Corporativo":
                         this.text1.setText("Ingrese el nombre de la corporacion:");
                         this.text2.setText("Ingrese el id corporativo: ");
                         this.text3.setText("Ingrese el nombre del encargado: ");

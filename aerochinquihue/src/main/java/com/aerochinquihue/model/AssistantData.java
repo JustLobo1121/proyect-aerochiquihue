@@ -41,6 +41,7 @@ public class AssistantData {
     
     public String getAsiento() { return asiento; }
     public void setAsiento(String asientos) { this.asiento = asientos; }
+    
     public boolean isEmergencia() { return emergencia; }
     public void setEmergencia(boolean emergencia) { this.emergencia = emergencia; }
 
