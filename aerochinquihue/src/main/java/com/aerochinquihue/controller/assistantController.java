@@ -9,9 +9,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.aerochinquihue.App;
+import com.aerochinquihue.db.DataSaver;
 import com.aerochinquihue.model.AssistantData;
 import com.aerochinquihue.model.Avion;
-import com.aerochinquihue.model.DataSaver;
 import com.aerochinquihue.model.TotalCost;
 
 import javafx.collections.FXCollections;
@@ -33,14 +33,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class assistantController implements ControllerConfigurable {
+public class assistantController {
     private Map<String, Set<String>> asientosOcupadosPorVuelo = new HashMap<>();
     private AssistantData assistantData;
+    private TotalCost costTotal;
     private Label text1 = new Label(),text2 = new Label(),text3 = new Label(),text4 = new Label(),text5 = new Label();
     private TextField field1 = new TextField(),field2 = new TextField(),field3 = new TextField(),field4 = new TextField();
     private ChoiceBox <String>tipoBancoChoiceBox = new ChoiceBox<>();
+    private ChoiceBox <String>BancoSel = new ChoiceBox<>();
     private VBox box1 = new VBox();
-    private int Total = 0;
+    private int Total=0;
     public int opcion; /* 1=viaje | 2=encomienda */
     public final String sceneMain = "view/mainView.fxml";
     /*    0          1          2       3           4
@@ -62,6 +64,7 @@ public class assistantController implements ControllerConfigurable {
     public String[] destinosA = {"Cochamo","Puelo Bajo","Contao","Rio Negro","Pupelde","Chepu","Ayacara","Pillan","Renihue","Isla Quenac","Palqui","Chaiten","Santa Barbara"};
     public String[] FormasPago = {"Efectivo","Tarjeta de Debito","Tarjeta de Credito","Transferencia","Credito Corporativo"};
     public String[] tipoBanco = {"Visa","MasterCard","American Express"};
+    public String[] bancoComunes = {"Banco Estado","Banco de Chile","Banco Santander","Scotiabank Chile"};
     @FXML private GridPane seatGrid;
     @FXML public void handleMainView(ActionEvent event) {
         switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
@@ -214,21 +217,20 @@ public class assistantController implements ControllerConfigurable {
         for (String asiento : asientosOcupados) {
             asientosSeleccionados.append(asiento).append(" ");
         }
-        this.assistantData.setAsiento(String.valueOf(asientosSeleccionados.length()));
+        this.assistantData.setAsiento(String.valueOf(asientosOcupados.size()));
         System.out.println("Asientos ocupados para " + claveVuelo + ": " + asientosOcupados);
-
     }
     
     @FXML public void handleAssistant4View(ActionEvent event) {
         if (this.costeTotal != null) {
             if (this.assistantData.getTipoEncomienda().equals("Viaje")) {
-                TotalCost costo = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getAsiento()),this.assistantData.getTipoEncomienda());
-                Total = costo.getTotal();
+                this.costTotal = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getAsiento()),this.assistantData.getTipoEncomienda());
+                Total = this.costTotal.getTotal();
                 System.out.println("valortotal: "+ Total);
                 costeTotal.setText(String.valueOf(Total));
             } else {
-                TotalCost costo = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getPeso()),this.assistantData.getTipoEncomienda());
-                Total = costo.getTotal();
+                this.costTotal = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getPeso()),this.assistantData.getTipoEncomienda());
+                Total = this.costTotal.getTotal();
                 System.out.println("valortotal: "+ Total);
                 costeTotal.setText(String.valueOf(Total));
             }
@@ -242,11 +244,14 @@ public class assistantController implements ControllerConfigurable {
                 this.box1.getChildren().clear();
                 switch (newValue) {
                     case "Efectivo":
+                        this.box1.getChildren().clear();
                         this.text1.setText("Ingrese la cantidad que recibe: ");
+                        this.field1.setPromptText("xxxx");
                         this.box1.getChildren().addAll(this.text1,this.field1);
                         this.HboxMetodos.getChildren().add(this.box1);
                         break;
                     case "Tarjeta de Debito":
+                        this.box1.getChildren().clear();
                         this.text1.setText("Ingrese el nombre del titular:");
                         this.field1.setPromptText("juan lopez");
                         this.text2.setText("Ingrese el n° de tarjeta: ");
@@ -259,6 +264,7 @@ public class assistantController implements ControllerConfigurable {
                         this.HboxMetodos.getChildren().add(this.box1);
                         break;
                     case "Tarjeta de Credito":
+                        this.box1.getChildren().clear();
                         this.text1.setText("Ingrese el nombre del titular:");
                         this.field1.setPromptText("juan lopez");
                         this.text2.setText("Ingrese el n° de tarjeta: ");
@@ -273,15 +279,27 @@ public class assistantController implements ControllerConfigurable {
                         this.HboxMetodos.getChildren().add(this.box1);
                         break;
                     case "Transferencia":
+                        this.box1.getChildren().clear();
+                        this.text1.setText("Ingrese el nombre del titular:");
+                        this.field1.setPromptText("juan lopez");
+                        this.text2.setText("Ingrese su banco:");
+                        this.BancoSel.setItems(FXCollections.observableArrayList(bancoComunes));
+                        this.text2.setText("Ingrese su numero de cuenta: ");
+                        this.field2.setPromptText("01234");
+                        this.box1.getChildren().addAll(this.text1,this.field1,this.text2,this.BancoSel,this.text2,this.field2);
                         break;
                     case "Credito Corporativo":
+                        this.box1.getChildren().clear();
                         this.text1.setText("Ingrese el nombre de la corporacion:");
+                        this.field1.setPromptText("ejemplo");
                         this.text2.setText("Ingrese el id corporativo: ");
+                        this.field2.setPromptText("123456");
                         this.text3.setText("Ingrese el nombre del encargado: ");
                         this.field3.setPromptText("genente o encargado financiero");
                         this.text4.setText("contacto corporativo:");
                         this.field4.setPromptText("ejemplo@dominio.ejemplo");
-                        this.box1.getChildren().addAll(this.text1,this.text2,this.text3,this.field3,this.text4,this.field4);
+                        this.box1.getChildren().addAll(this.text1, this.field1,this.text2,
+                            this.field2,this.text3,this.field3,this.text4,this.field4);
                         this.HboxMetodos.getChildren().add(this.box1);
                         break;
                     default:
@@ -321,18 +339,33 @@ public class assistantController implements ControllerConfigurable {
     
     @FXML public void handlePay(ActionEvent event) {
         this.assistantData.setEmergencia(false);
+        if (this.assistantData.getDescuento() == 0) {
+            this.assistantData.setDescuento(0);
+        }
+        if(this.assistantData.getPeso() == null) {
+            this.assistantData.setPeso("0");
+        }
         this.box1.getChildren().clear();
         if (this.choiceBoxMetodos.getValue() == null) {
             showAlert("Error", "Por favor seleccione un método de pago.");
         } else {
+            this.assistantData.setValorFinal(Total);
+            String asientosOcupados = "";
+            String claveVuelo = generateHash(this.assistantData.getFecha(), this.assistantData.getDestino(), this.assistantData.getAvionSel());
+            Set<String> asientosSeleccionados = asientosOcupadosPorVuelo.getOrDefault(claveVuelo, new HashSet<>());
+            asientosOcupados = String.join(";", asientosSeleccionados);
             switch (this.choiceBoxMetodos.getValue()) {
                 case "Efectivo":
-                    if (this.field1.getText() != null && !this.field1.getText().trim().isEmpty()
-                            && this.field1.getText().matches("\\d+")) {
+                    if (validatePaymentFields()) {
+                        this.assistantData.setMetodoPago("Efectivo");
                         int field1Int = Integer.parseInt(this.field1.getText());
                         if (field1Int == this.Total) {
-                            DataSaver.saveToFile(assistantData, "datos.csv");
-                            clearForm();
+                            if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                                DataSaver.saveViajeToDb(assistantData, asientosOcupados);
+                            } else {
+                                DataSaver.saveEncomiendaToDb(assistantData);
+                            }
+                            this.clearForm();
                         } else if (field1Int > this.Total) {
                             int cambio = field1Int - this.Total;
                             this.text2.setText("Pago mayor. Cambio a devolver: " + cambio);
@@ -341,33 +374,54 @@ public class assistantController implements ControllerConfigurable {
                             int faltante = this.Total - field1Int;
                             this.text2.setText("Pago insuficiente. Faltan: " + faltante);
                             this.box1.getChildren().add(this.text2);
+                        } else if (field1Int <= 0) {
+                            this.text2.setText("Por favor, ingrese un número válido.");
+                            this.box1.getChildren().add(this.text2);
+                            this.showAlert("Error en el pago", "El campo de pago debe contener un número válido.");
                         }
-                    } else {
-                        this.text2.setText("Por favor, ingrese un número válido.");
-                        this.box1.getChildren().add(this.text2);
-                        showAlert("Error en el pago", "El campo de pago debe contener un número válido.");
                     }
                     break;
                 case "Tarjeta de Debito":
-                    if (validateFields()) {
-                        DataSaver.saveToFile(assistantData, "datos.csv");
-                        clearForm();
+                    if (validatePaymentFields()) {
+                        this.assistantData.setMetodoPago("Tarjeta de Debito");
+                        if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                            DataSaver.saveViajeToDb(assistantData, asientosOcupados);
+                        } else {
+                            DataSaver.saveEncomiendaToDb(assistantData);
+                        }
+                        this.clearForm();
                     } else {
-                        showAlert("Error en el pago", "Por favor complete todos los campos de la tarjeta de débito.");
+                        this.showAlert("Error en el pago", "Por favor complete todos los campos de la tarjeta de débito.");
                     }
                     break;
                 case "Tarjeta de Credito":
-                    if (validateFields()) {
-                        DataSaver.saveToFile(assistantData, "datos.csv");
-                        clearForm();
+                    if (validatePaymentFields()) {
+                        this.assistantData.setMetodoPago("Tarjeta de Credito");
+                        if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                            DataSaver.saveViajeToDb(assistantData, asientosOcupados);
+                        } else {
+                            DataSaver.saveEncomiendaToDb(assistantData);
+                        }
+                        this.clearForm();
                     } else {
                         showAlert("Error en el pago", "Por favor complete todos los campos de la tarjeta de débito.");
                     }
                     break;
                 case "Transferencia":
+                    if (validatePaymentFields()) {
+                        this.assistantData.setMetodoPago("Transferencia");
+                        if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                            DataSaver.saveViajeToDb(assistantData, asientosOcupados);
+                        } else {
+                            DataSaver.saveEncomiendaToDb(assistantData);
+                        }
+                        this.clearForm();
+                    } else {
+                        this.showAlert("Error en el pago", "Por favor complete todos los campos de la transferencia.");
+                    }
                     break;
                 case "Credito Corporativo":
-                    if (validateFields()) {
+                    if (validatePaymentFields()) {
                         String empresa = this.field1.getText().trim();
                         String codigoCorporativo = this.field2.getText().trim();
                         String encargado = this.field3.getText().trim(); // posible desecho
@@ -375,21 +429,32 @@ public class assistantController implements ControllerConfigurable {
 
                         if (empresa.equalsIgnoreCase("Empresa Ejemplo") && codigoCorporativo.equals("12345")) {
                             System.out.println("Pago con Crédito Corporativo aprobado para la empresa: " + empresa);
-                            DataSaver.saveToFile(assistantData, "datos.csv");
-                            clearForm();
+                            this.assistantData.setMetodoPago("Credito Corporativo");
+                            if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                                DataSaver.saveViajeToDb(assistantData, asientosOcupados);
+                            } else {
+                                DataSaver.saveEncomiendaToDb(assistantData);
+                            }
+                            this.clearForm();
                         } else {
                             System.out.println("Crédito Corporativo rechazado: datos no válidos.");
-                            showAlert("Pago rechazado", "Los datos de Crédito Corporativo no son válidos.");
+                            this.showAlert("Pago rechazado", "Los datos de Crédito Corporativo no son válidos.");
                         }
                     } else {
-                        showAlert("Error en el pago", "Por favor complete todos los campos del Crédito Corporativo.");
+                        this.showAlert("Error en el pago", "Por favor complete todos los campos del Crédito Corporativo.");
                     }
                     break;
             }
+            this.generateBill();
+            switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
         }
     }
    
     @FXML public void handleEmergency(ActionEvent event) {
+        String asientosOcupados = "";
+        String claveVuelo = generateHash(this.assistantData.getFecha(), this.assistantData.getDestino(), this.assistantData.getAvionSel());
+        Set<String> asientosSeleccionados = asientosOcupadosPorVuelo.getOrDefault(claveVuelo, new HashSet<>());
+        asientosOcupados = String.join(";", asientosSeleccionados);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar Emergencia");
         alert.setHeaderText("¿Está seguro de que desea proceder con la emergencia?");
@@ -398,9 +463,15 @@ public class assistantController implements ControllerConfigurable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             this.assistantData.setEmergencia(true);
+            this.assistantData.setValorFinal(0);
+            this.assistantData.setDescuento(0);
             clearForm();
             showAlert("Emergencia", "El pago ha sido ignorado y se procederá con la emergencia.");
-            DataSaver.saveToFile(assistantData, "datos.csv");
+            if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                DataSaver.saveViajeToDb(assistantData, asientosOcupados);
+            } else {
+                DataSaver.saveEncomiendaToDb(assistantData);
+            }
         }
     }
     
@@ -418,7 +489,6 @@ public class assistantController implements ControllerConfigurable {
                     this.assistantData.setDescuento(discount);
                     this.assistantData.setValorFinal(Total);
                     showAlert("Descuento Aplicado", "se ha aplicado el descuento del: "+discount);
-                    DataSaver.saveToFile(assistantData, "datos.csv");
                 } else {
                     showAlert("Error", "el porcentaje debe estar entre 1 y 10.");
                 }
@@ -427,20 +497,13 @@ public class assistantController implements ControllerConfigurable {
             }
         });
     }
-    
-    @Override public void configureController(Object data) {
-        if (data instanceof AssistantData) {    
-            this.assistantData = (AssistantData) data;
-            if (this.destinos != null && this.assistantData.getDestino() != null) {
-                this.destinos.setValue(assistantData.getDestino());
-            }
-            if (this.TextFieldNombre != null) this.TextFieldNombre.setText(this.assistantData.getNombre());
-            if (this.TextFieldApellidos != null) this.TextFieldApellidos.setText(this.assistantData.getApellidos());
-            if (this.TextFieldTelefonos != null) this.TextFieldTelefonos.setText(this.assistantData.getTelefono());
-            if (this.TextFieldRut != null) this.TextFieldRut.setText(this.assistantData.getRut());
-            if (this.TextFieldDireccion != null) this.TextFieldDireccion.setText(this.assistantData.getDireccion());
-            if (this.TextFieldPeso != null) this.TextFieldPeso.setText(this.assistantData.getPeso());
-        }
+
+    private void generateBill() {
+        Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
+        dialog.setTitle("Boleta");
+        dialog.setHeaderText("Su boleta es de: " + this.assistantData.getValorFinal());
+        dialog.setContentText("Su vuelo es el: " + this.assistantData.getFecha());
+        dialog.showAndWait();
     }
 
     private void switchSceneWithData(ActionEvent event, String fxmlPath, String title, int width, int height, Object data) {
@@ -448,16 +511,10 @@ public class assistantController implements ControllerConfigurable {
         try {
             app.switchScene(fxmlPath, width, height, opcion);
             app.Rstage.setTitle(title);
-            ControllerConfigurable controller = (ControllerConfigurable) app.getController();
-            if (controller != null) {
-                controller.configureController(assistantData);
-                System.out.println("Datos configurados en la nueva vista: " + data);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     private boolean verifyRut(String rut) {
         String[] partes = rut.split("-");
         if (partes.length != 2) return false;
@@ -473,7 +530,6 @@ public class assistantController implements ControllerConfigurable {
             return false;
         }
     }
-    
     private char calculateUnique(int rut) {
         int sum = 0;
         int mult = 2;
@@ -490,7 +546,6 @@ public class assistantController implements ControllerConfigurable {
         if (dv == 10) return 'K';
         return (char) ('0' + dv);
     }
-    
     private void generateSeat(Avion avion, GridPane contenedor) {
         
         contenedor.getChildren().clear();
@@ -531,12 +586,53 @@ public class assistantController implements ControllerConfigurable {
             filaActual++;
         }
     }
-    
     private boolean validateFields() {
         return this.field1.getText() != null && !this.field1.getText().trim().isEmpty() &&
                this.field2.getText() != null && !this.field2.getText().trim().isEmpty() &&
                this.field3.getText() != null && !this.field3.getText().trim().isEmpty() &&
                this.field4.getText() != null && !this.field4.getText().trim().isEmpty();
+    }
+    private boolean validatePaymentFields() {
+        boolean isValid = true;
+    
+        if (this.choiceBoxMetodos.getValue() == null) {
+            showAlert("Error", "Por favor seleccione un método de pago.");
+            isValid = false;
+        }
+    
+        switch (this.choiceBoxMetodos.getValue()) {
+            case "Efectivo":
+                if (this.field1.getText() == null || this.field1.getText().trim().isEmpty() || !this.field1.getText().matches("\\d+")) {
+                    showAlert("Error", "Ingrese un monto válido.");
+                    isValid = false;
+                }
+                break;
+            case "Tarjeta de Debito":
+                if (!validateFields()) {
+                    showAlert("Error", "Complete todos los campos de la tarjeta.");
+                    isValid = false;
+                }
+                break;
+            case "Tarjeta de Credito":
+                if (!validateFields()) {
+                    showAlert("Error", "Complete todos los campos de la tarjeta.");
+                    isValid = false;
+                }
+                break;
+            case "Transferencia":
+                if (this.BancoSel.getValue() == null || this.field2.getText().trim().isEmpty()) {
+                    showAlert("Error", "Complete todos los campos de la transferencia.");
+                    isValid = false;
+                }
+                break;
+            case "Credito Corporativo":
+                if (!validateFields()) {
+                    showAlert("Error", "Complete todos los campos del Crédito Corporativo.");
+                    isValid = false;
+                }
+                break;
+        }
+        return isValid;
     }
     private void clearForm() {
         this.TextFieldNombre.clear();
@@ -560,7 +656,6 @@ public class assistantController implements ControllerConfigurable {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-    
     private String generateHash(String fecha, String destino, String avion) {
         return fecha + "_" + destino + "_" + avion;
     }

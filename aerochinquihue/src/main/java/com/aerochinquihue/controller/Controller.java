@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 
-public class Controller implements ControllerConfigurable {
+public class Controller {
     public final String sceneMain = "view/mainView.fxml";
     public final String sceneManager = "view/managers/managerView.fxml";
     public final String sceneAssistant = "view/assistant/assistantView.fxml";
@@ -25,8 +25,6 @@ public class Controller implements ControllerConfigurable {
     @FXML
     public void handleMainView(ActionEvent event) {
         switchScene(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400);
-    }
-    @Override public void configureController(Object data) {
     }
 
     private void switchScene(ActionEvent event, String fxmlPath, String title, int width, int height) {

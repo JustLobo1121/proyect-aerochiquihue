@@ -19,17 +19,17 @@
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleManager1View" text="Resumen de Ventas/Compras" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleManager1View" text="Resumen de Ventas/Compras (Viajes)" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleManager2View" text="Disponibilidad de Vuelos" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleManager2View" text="Resumen de Ventas/Compras (Encomiendas)" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleManager3View" text="Vuelos de Emergencias" textAlignment="CENTER" wrapText="true">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleManager3View" text="Disponibilidad de Vuelos" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>

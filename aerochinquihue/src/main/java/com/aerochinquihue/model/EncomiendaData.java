@@ -1,11 +1,16 @@
 package com.aerochinquihue.model;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Formatter;
-
-public class AssistantData {
-    private String nombre, apellidos, telefono, rut, direccion, destino, tipoEncomienda, peso, fecha,avionSel, asiento;
+public class EncomiendaData {
+    private String nombre;
+    private String apellidos;
+    private String telefono;
+    private String rut;
+    private String direccion;
+    private String destino;
+    private String tipoEncomienda;
+    private String peso;
+    private String fecha;
+    private String avionSel;
     private String MetodoPago;
     private Boolean emergencia;
     private int descuento, valorFinal;
@@ -40,9 +45,6 @@ public class AssistantData {
     public String getAvionSel() { return avionSel; }
     public void setAvion(String avionSel) { this.avionSel = avionSel; }
     
-    public String getAsiento() { return asiento; }
-    public void setAsiento(String asientos) { this.asiento = asientos; }
-    
     public boolean isEmergencia() { return emergencia; }
     public void setEmergencia(boolean emergencia) { this.emergencia = emergencia; }
 
@@ -54,31 +56,4 @@ public class AssistantData {
 
     public String getMetodoPago() { return MetodoPago; }
     public void setMetodoPago(String MetodoPago) { this.MetodoPago = MetodoPago; }
-
-    public String generateHash() {
-        try {
-            StringBuilder builder = new StringBuilder();
-            builder.append(this.fecha)
-                   .append(this.destino)
-                   .append(this.avionSel)
-                   .append(this.tipoEncomienda);
-        
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hashBytes = md.digest(builder.toString().getBytes());
-        
-            return byteArrayToHex(hashBytes);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    private String byteArrayToHex(byte[] byteArray) {
-        try (Formatter formatter = new Formatter()) {
-            for (byte b : byteArray) {
-                formatter.format("%02x", b);
-            }
-            return formatter.toString();
-        }
-    }
 }
-

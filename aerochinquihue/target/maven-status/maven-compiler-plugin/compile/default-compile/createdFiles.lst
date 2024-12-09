@@ -1,11 +1,11 @@
 com\aerochinquihue\controller\Controller.class
 com\aerochinquihue\model\TotalCost.class
-com\aerochinquihue\model\DataReader.class
-com\aerochinquihue\controller\ControllerConfigurable.class
-com\aerochinquihue\model\DataSaver.class
+com\aerochinquihue\db\DBInitializer.class
 com\aerochinquihue\controller\assistantController.class
+com\aerochinquihue\db\DataReader.class
 com\aerochinquihue\model\AssistantData.class
 com\aerochinquihue\controller\managerController.class
 module-info.class
+com\aerochinquihue\db\DataSaver.class
 com\aerochinquihue\model\Avion.class
 com\aerochinquihue\App.class

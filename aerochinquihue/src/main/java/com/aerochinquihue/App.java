@@ -1,6 +1,6 @@
 package com.aerochinquihue;
 
-import com.aerochinquihue.controller.ControllerConfigurable;
+import com.aerochinquihue.db.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -40,13 +40,11 @@ public class App extends Application {
         Parent newRoot = loader.load();
         Scene newScene = new Scene(newRoot, width, height);
         currentController = loader.getController();
-        if (currentController instanceof ControllerConfigurable) {
-            ((ControllerConfigurable) currentController).configureController(data);
-        }
         Rstage.setScene(newScene);
     }
 
     public static void main(String[] args) {
+        DBInitializer.createTable();
         launch();
     }
 

@@ -6,15 +6,13 @@ public class TotalCost {
     private String Tipo;
     private int Asiento;
     public TotalCost(String Destino, int Peso, String Tipo) {
-        if (this.Tipo == "viaje") {
+        this.Tipo = Tipo;
+        if (this.Tipo.equalsIgnoreCase("Viaje")) {
             this.Destino = Destino;
-            this.Tipo = Tipo;
             this.Asiento = Peso;
         } else {
             this.Destino = Destino;
             this.Peso = Peso;
-            this.Tipo = Tipo;
-            this.Asiento = 0;
         }
     }
     /*
@@ -37,79 +35,79 @@ public class TotalCost {
     public int getTotal() {
         switch (this.Destino) {
             case "Cochamo":
-                if (this.Tipo.equals("viaje")) {
-                    return 20000 * this.Asiento;
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
+                    return (20000 * this.Asiento);
                 } else {
-                    return 5000 * this.Peso;
+                    return (5000 * this.Peso);
                 }
             case "Puelo Bajo":
-                if (this.Tipo.equals("viaje")) {
-                    return 20000 * this.Asiento;
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
+                    return (20000 * this.Asiento);
                 } else {
-                    return 5000 * this.Peso;
+                    return (5000 * this.Peso);
                 }
             case "Contao":
-                if (this.Tipo.equals("viaje")) {
-                    return 20000 * this.Asiento;
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
+                    return (20000 * this.Asiento);
                 } else {
-                    return 5000 * this.Peso;
+                    return (5000 * this.Peso);
                 }
             case "Rio Negro":
-                if (this.Tipo.equals("viaje")) {
-                    return 25000 * this.Asiento;
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
+                    return (25000 * this.Asiento);
                 } else {
-                    return 6000 * this.Peso;
+                    return (6000 * this.Peso);
                 }
             case "Pupelde":
-                if (this.Tipo.equals("viaje")) {
-                    return 25000 * this.Asiento;
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
+                    return (25000 * this.Asiento);
                 } else {
-                    return 6000 * this.Peso;
+                    return (6000 * this.Peso);
                 }
             case "Chepu":
-                if (this.Tipo.equals("viaje")) {
-                    return 30000 * this.Asiento;
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
+                    return (30000 * this.Asiento);
                 } else {
-                    return 8000 * this.Peso;
+                    return (8000 * this.Peso);
                 }
             case "Ayacara":
-                if (this.Tipo.equals("viaje")) {
-                    return 30000 * this.Asiento;
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
+                    return (30000 * this.Asiento);
                 } else {
                     return 8000 * this.Peso;
                 }
             case "Pillan":
-                if (this.Tipo.equals("viaje")) {
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
                     return 40000 * this.Asiento;
                 } else {
                     return 12000 * this.Peso;
                 }
             case "Renihue":
-                if (this.Tipo.equals("viaje")) {
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
                     return 40000 * this.Asiento;
                 } else {
                     return 12000 * this.Peso;
                 }
             case "Isla Quenac":
-                if (this.Tipo.equals("viaje")) {
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
                     return 40000 * this.Asiento;
                 } else {
                     return 12000 * this.Peso;
                 }
             case "Palqui":
-                if (this.Tipo.equals("viaje")) {
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
                     return 40000 * this.Asiento;
                 } else {
                     return 12000 * this.Peso;
                 } 
             case "Chaiten":
-                if (this.Tipo.equals("viaje")) {
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
                     return 50000 * this.Asiento;
                 } else {
                     return 15000 * this.Peso;
                 } 
             case "Santa Barbara":
-                if (this.Tipo.equals("viaje")) {
+                if (this.Tipo.equalsIgnoreCase("viaje")) {
                     return 50000 * this.Asiento;
                 } else {
                     return 15000 * this.Peso;
