@@ -7,7 +7,6 @@ public class EncomiendaData {
     private String rut;
     private String direccion;
     private String destino;
-    private String tipoEncomienda;
     private String peso;
     private String fecha;
     private String avionSel;
@@ -35,9 +34,6 @@ public class EncomiendaData {
 
     public String getPeso() { return peso; }
     public void setPeso(String peso) { this.peso = peso; }
-
-    public String getTipoEncomienda() { return tipoEncomienda; }
-    public void setTipoEncomienda(String tipoEncomienda) { this.tipoEncomienda = tipoEncomienda; }
 
     public String getFecha() { return fecha; }
     public void setFecha(String Fecha) { this.fecha = Fecha; }

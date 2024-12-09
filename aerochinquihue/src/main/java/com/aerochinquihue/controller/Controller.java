@@ -14,7 +14,7 @@ public class Controller {
 
     @FXML
     public void handleManagerView(ActionEvent event) {
-        switchScene(event, sceneManager, "Sistema Principal de gerentes - AeroChinquihue", 600, 400);
+        switchScene(event, sceneManager, "Sistema Principal de gerentes - AeroChinquihue", 970, 600);
     }
 
     @FXML

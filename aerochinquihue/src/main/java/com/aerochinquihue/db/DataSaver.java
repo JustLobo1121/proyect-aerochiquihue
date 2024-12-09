@@ -42,7 +42,7 @@ public class DataSaver {
     }
 
     public static void saveViajeToDb(AssistantData assistantData, String asientosOcupados) {
-        String sql = "INSERT INTO ViajeData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, tipoEncomienda, asientos, emergencia, descuento, valorFinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ViajeData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, asientos, emergencia, descuento, valorFinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(dbUrl); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, assistantData.getNombre());
@@ -53,11 +53,10 @@ public class DataSaver {
             pstmt.setString(6, assistantData.getDestino());
             pstmt.setString(7, assistantData.getFecha());
             pstmt.setString(8, assistantData.getAvionSel());
-            pstmt.setString(9, assistantData.getTipoEncomienda());
-            pstmt.setString(10, asientosOcupados);
-            pstmt.setBoolean(11, assistantData.isEmergencia());
-            pstmt.setInt(12, assistantData.getDescuento());
-            pstmt.setInt(13, assistantData.getValorFinal());
+            pstmt.setString(9, asientosOcupados);
+            pstmt.setBoolean(10, assistantData.isEmergencia());
+            pstmt.setInt(11, assistantData.getDescuento());
+            pstmt.setInt(12, assistantData.getValorFinal());
 
             pstmt.executeUpdate();
             System.out.println("Datos guardados exitosamente en la base de datos");
@@ -67,7 +66,7 @@ public class DataSaver {
     }
 
     public static void saveEncomiendaToDb(AssistantData assistantData) {
-        String sql = "INSERT INTO ViajeData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, tipoEncomienda, peso, emergencia, descuento, valorFinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO EncomiendaData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, peso, emergencia, descuento, valorFinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(dbUrl); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, assistantData.getNombre());
@@ -78,11 +77,10 @@ public class DataSaver {
             pstmt.setString(6, assistantData.getDestino());
             pstmt.setString(7, assistantData.getFecha());
             pstmt.setString(8, assistantData.getAvionSel());
-            pstmt.setString(9, assistantData.getTipoEncomienda());
-            pstmt.setString(10, assistantData.getPeso());
-            pstmt.setBoolean(11, assistantData.isEmergencia());
-            pstmt.setInt(12, assistantData.getDescuento());
-            pstmt.setInt(13, assistantData.getValorFinal());
+            pstmt.setString(9, assistantData.getPeso());
+            pstmt.setBoolean(10, assistantData.isEmergencia());
+            pstmt.setInt(11, assistantData.getDescuento());
+            pstmt.setInt(12, assistantData.getValorFinal());
 
             pstmt.executeUpdate();
             System.out.println("Datos guardados exitosamente en la base de datos");

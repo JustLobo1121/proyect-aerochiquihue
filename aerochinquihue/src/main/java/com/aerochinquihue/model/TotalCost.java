@@ -1,119 +1,104 @@
 package com.aerochinquihue.model;
 
+import java.util.List;
+
+import com.aerochinquihue.db.DataReader;
+
 public class TotalCost {
     private String Destino;
     private int Peso;
-    private String Tipo;
     private int Asiento;
-    public TotalCost(String Destino, int Peso, String Tipo) {
-        this.Tipo = Tipo;
-        if (this.Tipo.equalsIgnoreCase("Viaje")) {
-            this.Destino = Destino;
-            this.Asiento = Peso;
-        } else {
-            this.Destino = Destino;
-            this.Peso = Peso;
-        }
+    public TotalCost(String Destino, int Peso) {
+        this.Destino = Destino;
+        this.Asiento = Peso;
+        this.Peso = Peso;
     }
-    /*
-     * Destino         - Precio Pasaje (por persona) - Precio Encomienda (cada kg)
-     * Cochamo         - 20.000                      - 5.000 -
-     * Puelo Bajo      - 20.000                      - 5.000 -
-     * Contao          - 20.000                      - 5.000 -
-     * Rio Negro       - 25.000                      - 6.000 -2
-     * Pupelde         - 25.000                      - 6.000 -2 v
-     * Chepu           - 30.000                      - 8.000 -3
-     * Ayacara         - 30.000                      - 8.000 -3 v
-     * Pillan          - 40.000                      - 12.000 -4
-     * Renihue         - 40.000                      - 12.000 -4 
-     * Isla Quenac     - 40.000                      - 12.000 -4
-     * Palqui          - 40.000                      - 12.000 -4
-     * Chaiten         - 50.000                      - 15.000 -5
-     * Santa Barbara   - 50.000                      - 15.000 -5
-     *
-     */
-    public int getTotal() {
+    public int calTotalViajes() {
         switch (this.Destino) {
             case "Cochamo":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return (20000 * this.Asiento);
-                } else {
-                    return (5000 * this.Peso);
-                }
+                return (20000 * this.Asiento);
             case "Puelo Bajo":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return (20000 * this.Asiento);
-                } else {
-                    return (5000 * this.Peso);
-                }
+                return (20000 * this.Asiento);
             case "Contao":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return (20000 * this.Asiento);
-                } else {
-                    return (5000 * this.Peso);
-                }
+                return (20000 * this.Asiento);
             case "Rio Negro":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return (25000 * this.Asiento);
-                } else {
-                    return (6000 * this.Peso);
-                }
+                return (25000 * this.Asiento);
             case "Pupelde":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return (25000 * this.Asiento);
-                } else {
-                    return (6000 * this.Peso);
-                }
+                return (25000 * this.Asiento);
             case "Chepu":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return (30000 * this.Asiento);
-                } else {
-                    return (8000 * this.Peso);
-                }
+                return (30000 * this.Asiento);
             case "Ayacara":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return (30000 * this.Asiento);
-                } else {
-                    return 8000 * this.Peso;
-                }
+                return (30000 * this.Asiento);
             case "Pillan":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return 40000 * this.Asiento;
-                } else {
-                    return 12000 * this.Peso;
-                }
+                return 40000 * this.Asiento;
             case "Renihue":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return 40000 * this.Asiento;
-                } else {
-                    return 12000 * this.Peso;
-                }
+                return 40000 * this.Asiento;
             case "Isla Quenac":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return 40000 * this.Asiento;
-                } else {
-                    return 12000 * this.Peso;
-                }
+                return 40000 * this.Asiento;
             case "Palqui":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return 40000 * this.Asiento;
-                } else {
-                    return 12000 * this.Peso;
-                } 
+                return 40000 * this.Asiento; 
             case "Chaiten":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return 50000 * this.Asiento;
-                } else {
-                    return 15000 * this.Peso;
-                } 
+                return 50000 * this.Asiento; 
             case "Santa Barbara":
-                if (this.Tipo.equalsIgnoreCase("viaje")) {
-                    return 50000 * this.Asiento;
-                } else {
-                    return 15000 * this.Peso;
-                }
+                return 50000 * this.Asiento;
             default:
                 throw new IllegalArgumentException("Destino no encontrado: " + this.Destino);
         }
     }
+    public int calTotalEncomiendas() {
+        switch (this.Destino) {
+            case "Cochamo":
+                return (5000 * this.Peso);
+            case "Puelo Bajo":
+                return (5000 * this.Peso);
+            case "Contao":
+                return (5000 * this.Peso);
+            case "Rio Negro":
+                return (6000 * this.Peso);
+            case "Pupelde":
+                return (6000 * this.Peso);
+            case "Chepu":
+                return (8000 * this.Peso);
+            case "Ayacara":
+                return 8000 * this.Peso;
+            case "Pillan":
+                return 12000 * this.Peso;
+            case "Renihue":
+                return 12000 * this.Peso;
+            case "Isla Quenac":
+                return 12000 * this.Peso;
+            case "Palqui":
+                return 12000 * this.Peso; 
+            case "Chaiten":
+                return 15000 * this.Peso;
+            case "Santa Barbara":
+                return 15000 * this.Peso;
+            default:
+                throw new IllegalArgumentException("Destino no encontrado: " + this.Destino);
+        }
+    }
+
+    public int getTotalViajes() {
+        DataReader dataReader = new DataReader();
+        List<ViajeData> viajeDataList = dataReader.readDataViaje();
+        int totalViajes = 0;
+
+        for (ViajeData viaje : viajeDataList) {
+            totalViajes += viaje.getValorFinal();
+        }
+
+        return totalViajes;
+    }
+    public int getTotalEncomiendas() {
+        DataReader dataReader = new DataReader();
+        List<EncomiendaData> encomiendaDataList = dataReader.readDataEncomienda();
+        int totalEncomiendas = 0;
+
+        for (EncomiendaData encomienda : encomiendaDataList) {
+            totalEncomiendas += encomienda.getValorFinal();
+        }
+
+        return totalEncomiendas;
+    }
+
 }

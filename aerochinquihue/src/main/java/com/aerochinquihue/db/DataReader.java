@@ -2,6 +2,7 @@ package com.aerochinquihue.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -58,7 +59,6 @@ public class DataReader {
                 data.setDestino(rs.getString("destino"));
                 data.setFecha(rs.getString("fecha"));
                 data.setAvion(rs.getString("avion"));
-                data.setTipoEncomienda(rs.getString("tipoEncomienda"));
                 data.setAsiento(rs.getString("asientos"));
                 data.setEmergencia(rs.getBoolean("emergencia"));
                 data.setDescuento(rs.getInt("descuento"));
@@ -86,7 +86,6 @@ public class DataReader {
                 data.setDestino(rs.getString("destino"));
                 data.setFecha(rs.getString("fecha"));
                 data.setAvion(rs.getString("avion"));
-                data.setTipoEncomienda(rs.getString("tipoEncomienda"));
                 data.setPeso(rs.getString("peso"));
                 data.setEmergencia(rs.getBoolean("emergencia"));
                 data.setDescuento(rs.getInt("descuento"));
@@ -98,5 +97,56 @@ public class DataReader {
             e.printStackTrace();
         }
         return encomiendaDataList;
+    }
+    public void updateViaje(ViajeData viajeData) {
+        String sql = "UPDATE ViajeData SET descuento = ?, valorFinal = ? WHERE rut = ?";
+
+        try (Connection conn = DriverManager.getConnection(dbUrl); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, viajeData.getDescuento());
+            pstmt.setInt(2, viajeData.getValorFinal());
+            pstmt.setString(3, viajeData.getRut());
+
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteViaje(String rut) {
+        String sql = "DELETE FROM ViajeData WHERE rut = ?";
+    
+        try (Connection conn = DriverManager.getConnection(dbUrl); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, rut);
+    
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateEncomienda(EncomiendaData encomiendaData) {
+        String sql = "UPDATE EncomiendaData SET peso = ?, descuento = ?, valorFinal = ? WHERE rut = ?";
+    
+        try (Connection conn = DriverManager.getConnection(dbUrl); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, encomiendaData.getPeso());
+            pstmt.setInt(2, encomiendaData.getDescuento());
+            pstmt.setInt(3, encomiendaData.getValorFinal());
+            pstmt.setString(4, encomiendaData.getRut());
+    
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteEncomienda(String rut) {
+        String sql = "DELETE FROM EncomiendaData WHERE rut = ?";
+    
+        try (Connection conn = DriverManager.getConnection(dbUrl); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, rut);
+    
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

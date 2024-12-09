@@ -123,7 +123,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="TextFieldTelefonos" prefHeight="25.0" prefWidth="348.0" promptText="9 1234 5678">
+                  <TextField fx:id="TextFieldTelefonos" prefHeight="25.0" prefWidth="348.0" promptText="912345678">
                      <font>
                         <Font size="15.0" />
                      </font>

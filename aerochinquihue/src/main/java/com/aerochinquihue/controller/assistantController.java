@@ -134,7 +134,9 @@ public class assistantController {
             this.assistantData.setTelefono(TextFieldTelefonos.getText());
             this.assistantData.setRut(TextFieldRut.getText());
             this.assistantData.setDireccion(TextFieldDireccion.getText());
-
+            if (opcion == 2) {
+                this.extrasEncomienda.setVisible(true);
+            }
             this.view00.setVisible(false);
             this.view01.setVisible(false);
             this.view02.setVisible(true);
@@ -145,9 +147,6 @@ public class assistantController {
     @FXML public void handleAssistant3View(ActionEvent event) {
         Avion avionSel = null;
         int validado = 0;
-        if (opcion == 2) {
-            this.extrasEncomienda.setVisible(true);
-        }
         if (this.datePicker1.getValue().isBefore(LocalDate.now()) || this.datePicker1.getValue().isAfter(LocalDate.now().plusYears(1))) {
             this.datePicker1.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
             validado += 1;
@@ -191,11 +190,7 @@ public class assistantController {
                 this.view03.setVisible(true);
                 this.view04.setVisible(false);
             } else {
-                this.view00.setVisible(false);
-                this.view01.setVisible(false);
-                this.view02.setVisible(false);
-                this.view03.setVisible(false);
-                this.view04.setVisible(true);
+                this.view4();
             }
         }        
     }
@@ -222,96 +217,7 @@ public class assistantController {
     }
     
     @FXML public void handleAssistant4View(ActionEvent event) {
-        if (this.costeTotal != null) {
-            if (this.assistantData.getTipoEncomienda().equals("Viaje")) {
-                this.costTotal = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getAsiento()),this.assistantData.getTipoEncomienda());
-                Total = this.costTotal.getTotal();
-                System.out.println("valortotal: "+ Total);
-                costeTotal.setText(String.valueOf(Total));
-            } else {
-                this.costTotal = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getPeso()),this.assistantData.getTipoEncomienda());
-                Total = this.costTotal.getTotal();
-                System.out.println("valortotal: "+ Total);
-                costeTotal.setText(String.valueOf(Total));
-            }
-        }
-        if (this.choiceBoxMetodos != null) {
-            this.choiceBoxMetodos.setItems(FXCollections.observableArrayList(FormasPago));
-        }
-
-        this.choiceBoxMetodos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null && this.HboxMetodos != null) {
-                this.box1.getChildren().clear();
-                switch (newValue) {
-                    case "Efectivo":
-                        this.box1.getChildren().clear();
-                        this.text1.setText("Ingrese la cantidad que recibe: ");
-                        this.field1.setPromptText("xxxx");
-                        this.box1.getChildren().addAll(this.text1,this.field1);
-                        this.HboxMetodos.getChildren().add(this.box1);
-                        break;
-                    case "Tarjeta de Debito":
-                        this.box1.getChildren().clear();
-                        this.text1.setText("Ingrese el nombre del titular:");
-                        this.field1.setPromptText("juan lopez");
-                        this.text2.setText("Ingrese el n° de tarjeta: ");
-                        this.field2.setPromptText("sin el numero de seguridad");
-                        this.text3.setText("Ingrese la fecha de caducidad: ");
-                        this.field3.setPromptText("xx/xx");
-                        this.text4.setText("Tipo de tarjeta");
-                        this.tipoBancoChoiceBox.setItems(FXCollections.observableArrayList(tipoBanco));
-                        this.box1.getChildren().addAll(this.text1,this.field1,this.text2,this.field2,this.text3,this.field3,this.text4,this.tipoBancoChoiceBox);
-                        this.HboxMetodos.getChildren().add(this.box1);
-                        break;
-                    case "Tarjeta de Credito":
-                        this.box1.getChildren().clear();
-                        this.text1.setText("Ingrese el nombre del titular:");
-                        this.field1.setPromptText("juan lopez");
-                        this.text2.setText("Ingrese el n° de tarjeta: ");
-                        this.field2.setPromptText("sin el numero de seguridad");
-                        this.text3.setText("Ingrese la fecha de caducidad: ");
-                        this.field3.setPromptText("xx/xx");
-                        this.text4.setText("Tipo de tarjeta");
-                        this.tipoBancoChoiceBox.setItems(FXCollections.observableArrayList(tipoBanco));
-                        this.text5.setText("Ingrese la cantidad de cuotas:");
-                        this.field4.setPromptText("1 o 2 cuotas");
-                        this.box1.getChildren().addAll(this.text1,this.field1,this.text2,this.field2,this.text3,this.field3,this.text4,this.tipoBancoChoiceBox,this.text5,this.field4);
-                        this.HboxMetodos.getChildren().add(this.box1);
-                        break;
-                    case "Transferencia":
-                        this.box1.getChildren().clear();
-                        this.text1.setText("Ingrese el nombre del titular:");
-                        this.field1.setPromptText("juan lopez");
-                        this.text2.setText("Ingrese su banco:");
-                        this.BancoSel.setItems(FXCollections.observableArrayList(bancoComunes));
-                        this.text2.setText("Ingrese su numero de cuenta: ");
-                        this.field2.setPromptText("01234");
-                        this.box1.getChildren().addAll(this.text1,this.field1,this.text2,this.BancoSel,this.text2,this.field2);
-                        break;
-                    case "Credito Corporativo":
-                        this.box1.getChildren().clear();
-                        this.text1.setText("Ingrese el nombre de la corporacion:");
-                        this.field1.setPromptText("ejemplo");
-                        this.text2.setText("Ingrese el id corporativo: ");
-                        this.field2.setPromptText("123456");
-                        this.text3.setText("Ingrese el nombre del encargado: ");
-                        this.field3.setPromptText("genente o encargado financiero");
-                        this.text4.setText("contacto corporativo:");
-                        this.field4.setPromptText("ejemplo@dominio.ejemplo");
-                        this.box1.getChildren().addAll(this.text1, this.field1,this.text2,
-                            this.field2,this.text3,this.field3,this.text4,this.field4);
-                        this.HboxMetodos.getChildren().add(this.box1);
-                        break;
-                    default:
-                        throw new IllegalArgumentException("newValue no existe: " + newValue);
-                }
-            }
-        });
-        this.view00.setVisible(false);
-        this.view01.setVisible(false);
-        this.view02.setVisible(false);
-        this.view03.setVisible(false);
-        this.view04.setVisible(true);
+        this.view4();
     }
     
     @FXML public void initialize() {
@@ -360,11 +266,13 @@ public class assistantController {
                         this.assistantData.setMetodoPago("Efectivo");
                         int field1Int = Integer.parseInt(this.field1.getText());
                         if (field1Int == this.Total) {
-                            if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                            if (this.opcion == 1) {
                                 DataSaver.saveViajeToDb(assistantData, asientosOcupados);
-                            } else {
+                            } else if (this.opcion == 2) {
                                 DataSaver.saveEncomiendaToDb(assistantData);
                             }
+                            this.generateBill();
+                            switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
                             this.clearForm();
                         } else if (field1Int > this.Total) {
                             int cambio = field1Int - this.Total;
@@ -384,11 +292,13 @@ public class assistantController {
                 case "Tarjeta de Debito":
                     if (validatePaymentFields()) {
                         this.assistantData.setMetodoPago("Tarjeta de Debito");
-                        if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                        if (this.opcion == 1) {
                             DataSaver.saveViajeToDb(assistantData, asientosOcupados);
-                        } else {
+                        } else if (this.opcion == 2) {
                             DataSaver.saveEncomiendaToDb(assistantData);
                         }
+                        this.generateBill();
+                        switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
                         this.clearForm();
                     } else {
                         this.showAlert("Error en el pago", "Por favor complete todos los campos de la tarjeta de débito.");
@@ -397,11 +307,13 @@ public class assistantController {
                 case "Tarjeta de Credito":
                     if (validatePaymentFields()) {
                         this.assistantData.setMetodoPago("Tarjeta de Credito");
-                        if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                        if (this.opcion == 1) {
                             DataSaver.saveViajeToDb(assistantData, asientosOcupados);
-                        } else {
+                        } else if (this.opcion == 2) {
                             DataSaver.saveEncomiendaToDb(assistantData);
                         }
+                        this.generateBill();
+                        switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
                         this.clearForm();
                     } else {
                         showAlert("Error en el pago", "Por favor complete todos los campos de la tarjeta de débito.");
@@ -410,11 +322,13 @@ public class assistantController {
                 case "Transferencia":
                     if (validatePaymentFields()) {
                         this.assistantData.setMetodoPago("Transferencia");
-                        if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                        if (this.opcion == 1) {
                             DataSaver.saveViajeToDb(assistantData, asientosOcupados);
-                        } else {
+                        } else if (this.opcion == 2) {
                             DataSaver.saveEncomiendaToDb(assistantData);
                         }
+                        this.generateBill();
+                        switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
                         this.clearForm();
                     } else {
                         this.showAlert("Error en el pago", "Por favor complete todos los campos de la transferencia.");
@@ -430,11 +344,13 @@ public class assistantController {
                         if (empresa.equalsIgnoreCase("Empresa Ejemplo") && codigoCorporativo.equals("12345")) {
                             System.out.println("Pago con Crédito Corporativo aprobado para la empresa: " + empresa);
                             this.assistantData.setMetodoPago("Credito Corporativo");
-                            if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+                            if (this.opcion == 1) {
                                 DataSaver.saveViajeToDb(assistantData, asientosOcupados);
-                            } else {
+                            } else if (this.opcion == 2) {
                                 DataSaver.saveEncomiendaToDb(assistantData);
                             }
+                            this.generateBill();
+                            switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
                             this.clearForm();
                         } else {
                             System.out.println("Crédito Corporativo rechazado: datos no válidos.");
@@ -445,8 +361,6 @@ public class assistantController {
                     }
                     break;
             }
-            this.generateBill();
-            switchSceneWithData(event, sceneMain, "Sistema Principal - AeroChinquihue", 600, 400, assistantData);
         }
     }
    
@@ -467,9 +381,9 @@ public class assistantController {
             this.assistantData.setDescuento(0);
             clearForm();
             showAlert("Emergencia", "El pago ha sido ignorado y se procederá con la emergencia.");
-            if (this.assistantData.getTipoEncomienda().equalsIgnoreCase("viaje")) {
+            if (this.opcion == 1) {
                 DataSaver.saveViajeToDb(assistantData, asientosOcupados);
-            } else {
+            } else if (this.opcion == 2) {
                 DataSaver.saveEncomiendaToDb(assistantData);
             }
         }
@@ -648,6 +562,93 @@ public class assistantController {
         this.field2.clear();
         this.field3.clear();
         this.field4.clear();
+    }
+    private void view4() {
+        if (this.costeTotal != null) {
+            if (this.opcion == 1) {
+                this.costTotal = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getAsiento()));
+                Total = this.costTotal.calTotalViajes();
+                System.out.println("valortotal: "+ Total);
+                costeTotal.setText(String.valueOf(Total));
+            } else {
+                this.costTotal = new TotalCost(this.assistantData.getDestino(),Integer.parseInt(this.assistantData.getPeso()));
+                Total = this.costTotal.calTotalEncomiendas();
+                System.out.println("valortotal: "+ Total);
+                costeTotal.setText(String.valueOf(Total));
+            }
+        }
+        if (this.choiceBoxMetodos != null) {
+            this.choiceBoxMetodos.setItems(FXCollections.observableArrayList(FormasPago));
+        }
+
+        this.choiceBoxMetodos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && this.HboxMetodos != null) {
+                this.box1.getChildren().clear();
+                switch (newValue) {
+                    case "Efectivo":
+                        this.text1.setText("Ingrese la cantidad que recibe: ");
+                        this.field1.setPromptText("xxxx");
+                        this.box1.getChildren().addAll(this.text1,this.field1);
+                        this.HboxMetodos.getChildren().add(this.box1);
+                        break;
+                    case "Tarjeta de Debito":
+                        this.text1.setText("Ingrese el nombre del titular:");
+                        this.field1.setPromptText("juan lopez");
+                        this.text2.setText("Ingrese el n° de tarjeta: ");
+                        this.field2.setPromptText("sin el numero de seguridad");
+                        this.text3.setText("Ingrese la fecha de caducidad: ");
+                        this.field3.setPromptText("xx/xx");
+                        this.text4.setText("Tipo de tarjeta");
+                        this.tipoBancoChoiceBox.setItems(FXCollections.observableArrayList(tipoBanco));
+                        this.box1.getChildren().addAll(this.text1,this.field1,this.text2,this.field2,this.text3,this.field3,this.text4,this.tipoBancoChoiceBox);
+                        this.HboxMetodos.getChildren().add(this.box1);
+                        break;
+                    case "Tarjeta de Credito":
+                        this.text1.setText("Ingrese el nombre del titular:");
+                        this.field1.setPromptText("juan lopez");
+                        this.text2.setText("Ingrese el n° de tarjeta: ");
+                        this.field2.setPromptText("sin el numero de seguridad");
+                        this.text3.setText("Ingrese la fecha de caducidad: ");
+                        this.field3.setPromptText("xx/xx");
+                        this.text4.setText("Tipo de tarjeta");
+                        this.tipoBancoChoiceBox.setItems(FXCollections.observableArrayList(tipoBanco));
+                        this.text5.setText("Ingrese la cantidad de cuotas:");
+                        this.field4.setPromptText("1 o 2 cuotas");
+                        this.box1.getChildren().addAll(this.text1,this.field1,this.text2,this.field2,this.text3,this.field3,this.text4,this.tipoBancoChoiceBox,this.text5,this.field4);
+                        this.HboxMetodos.getChildren().add(this.box1);
+                        break;
+                    case "Transferencia":
+                        this.text1.setText("Ingrese el nombre del titular:");
+                        this.field1.setPromptText("juan lopez");
+                        this.text2.setText("Ingrese su banco:");
+                        this.BancoSel.setItems(FXCollections.observableArrayList(bancoComunes));
+                        this.text2.setText("Ingrese su numero de cuenta: ");
+                        this.field2.setPromptText("01234");
+                        this.box1.getChildren().addAll(this.text1,this.field1,this.text2,this.BancoSel,this.text2,this.field2);
+                        break;
+                    case "Credito Corporativo":
+                        this.text1.setText("Ingrese el nombre de la corporacion:");
+                        this.field1.setPromptText("ejemplo");
+                        this.text2.setText("Ingrese el id corporativo: ");
+                        this.field2.setPromptText("123456");
+                        this.text3.setText("Ingrese el nombre del encargado: ");
+                        this.field3.setPromptText("genente o encargado financiero");
+                        this.text4.setText("contacto corporativo:");
+                        this.field4.setPromptText("ejemplo@dominio.ejemplo");
+                        this.box1.getChildren().addAll(this.text1, this.field1,this.text2,
+                            this.field2,this.text3,this.field3,this.text4,this.field4);
+                        this.HboxMetodos.getChildren().add(this.box1);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("newValue no existe: " + newValue);
+                }
+            }
+        });
+        this.view00.setVisible(false);
+        this.view01.setVisible(false);
+        this.view02.setVisible(false);
+        this.view03.setVisible(false);
+        this.view04.setVisible(true);
     }
     private void showAlert(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
