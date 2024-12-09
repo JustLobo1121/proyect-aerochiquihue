@@ -338,8 +338,6 @@ public class assistantController {
                     if (validatePaymentFields()) {
                         String empresa = this.field1.getText().trim();
                         String codigoCorporativo = this.field2.getText().trim();
-                        String encargado = this.field3.getText().trim(); // posible desecho
-                        String contacto = this.field4.getText().trim(); // posible desecho
 
                         if (empresa.equalsIgnoreCase("Empresa Ejemplo") && codigoCorporativo.equals("12345")) {
                             System.out.println("Pago con Crédito Corporativo aprobado para la empresa: " + empresa);

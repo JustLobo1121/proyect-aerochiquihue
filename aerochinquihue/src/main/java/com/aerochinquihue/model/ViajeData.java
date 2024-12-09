@@ -11,7 +11,6 @@ public class ViajeData {
     private String fecha;
     private String avionSel;
     private String asiento;
-    private String MetodoPago;
     private Boolean emergencia;
     private int descuento, valorFinal;
 
