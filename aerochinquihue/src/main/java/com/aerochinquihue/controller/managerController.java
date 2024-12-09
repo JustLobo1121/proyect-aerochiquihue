@@ -142,7 +142,6 @@ public class managerController {
         }
         DataReader dataReader = new DataReader();
         List<EncomiendaData> encomiendaDataList = dataReader.readDataEncomienda();
-        // ObservableList<AssistantData> observableList = FXCollections.observableArrayList(assistantDataList);
         table1.setItems(FXCollections.observableArrayList(encomiendaDataList));
     }
 

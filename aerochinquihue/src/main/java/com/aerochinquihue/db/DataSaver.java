@@ -40,35 +40,7 @@ public class DataSaver {
             e.printStackTrace();
         }
     }
-    /*
-    public static void saveToDb (AssistantData assistantData, String asientosOcupados) {
-        String sql = "INSERT INTO AssistantData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, tipoEncomienda, peso, asiento, emergencia, descuento, valorFinal, asientosOcupados) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DriverManager.getConnection(dbUrl);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, assistantData.getNombre());
-            pstmt.setString(2, assistantData.getApellidos());
-            pstmt.setString(3, assistantData.getTelefono());
-            pstmt.setString(4, assistantData.getRut());
-            pstmt.setString(5, assistantData.getDireccion());
-            pstmt.setString(6, assistantData.getDestino());
-            pstmt.setString(7, assistantData.getFecha());
-            pstmt.setString(8, assistantData.getAvionSel());
-            pstmt.setString(9, assistantData.getTipoEncomienda());
-            pstmt.setString(10, assistantData.getPeso());
-            pstmt.setString(11, assistantData.getAsiento());
-            pstmt.setBoolean(12, assistantData.isEmergencia());
-            pstmt.setInt(13, assistantData.getDescuento());
-            pstmt.setInt(14, assistantData.getValorFinal());
-            pstmt.setString(15, asientosOcupados);
-
-            pstmt.executeUpdate();
-            System.out.println("Datos guardados exitosamente en la base de datos");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    */
     public static void saveViajeToDb(AssistantData assistantData, String asientosOcupados) {
         String sql = "INSERT INTO ViajeData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, tipoEncomienda, asientos, emergencia, descuento, valorFinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(dbUrl); PreparedStatement pstmt = conn.prepareStatement(sql)) {
