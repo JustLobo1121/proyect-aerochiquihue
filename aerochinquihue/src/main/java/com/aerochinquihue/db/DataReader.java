@@ -98,6 +98,7 @@ public class DataReader {
         }
         return encomiendaDataList;
     }
+    
     public void updateViaje(ViajeData viajeData) {
         String sql = "UPDATE ViajeData SET descuento = ?, valorFinal = ? WHERE rut = ?";
 
@@ -111,7 +112,6 @@ public class DataReader {
             e.printStackTrace();
         }
     }
-
     public void deleteViaje(String rut) {
         String sql = "DELETE FROM ViajeData WHERE rut = ?";
     

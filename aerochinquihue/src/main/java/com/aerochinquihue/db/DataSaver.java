@@ -1,9 +1,5 @@
 package com.aerochinquihue.db;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,34 +8,6 @@ import com.aerochinquihue.model.AssistantData;
 
 public class DataSaver {
     private static final String dbUrl = "jdbc:sqlite:test1.db";
-
-    public static void saveToFile(AssistantData assistantData, String filePath, String asientosOcupados) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))) {
-            // String hashVuelo = assistantData.generateHash();
-            String line = String.join(",",
-                assistantData.getNombre(),
-                assistantData.getApellidos(),
-                assistantData.getTelefono(),
-                assistantData.getRut(),
-                assistantData.getDireccion(),
-                assistantData.getDestino(),
-                assistantData.getFecha(),
-                assistantData.getAvionSel(),
-                assistantData.getTipoEncomienda(),
-                assistantData.getPeso(),
-                String.valueOf(assistantData.getAsiento()),
-                String.valueOf(assistantData.isEmergencia()),
-                String.valueOf(assistantData.getDescuento()),
-                String.valueOf(assistantData.getValorFinal()),
-                asientosOcupados
-            );
-            writer.write(line);
-            writer.newLine();
-            System.out.println("Datos guardados exitosamente");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void saveViajeToDb(AssistantData assistantData, String asientosOcupados) {
         String sql = "INSERT INTO ViajeData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, asientos, emergencia, descuento, valorFinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
