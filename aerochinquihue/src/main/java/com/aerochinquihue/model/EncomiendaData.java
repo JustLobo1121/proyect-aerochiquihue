@@ -10,7 +10,7 @@ public class EncomiendaData {
     private String peso;
     private String fecha;
     private String avionSel;
-    private String MetodoPago;
+    private String remitente;
     private Boolean emergencia;
     private int descuento, valorFinal;
 
@@ -50,6 +50,6 @@ public class EncomiendaData {
     public int getValorFinal() { return valorFinal; }
     public void setValorFinal(int valorFinal) { this.valorFinal = valorFinal; }
 
-    public String getMetodoPago() { return MetodoPago; }
-    public void setMetodoPago(String MetodoPago) { this.MetodoPago = MetodoPago; }
+    public String getRemitente() { return remitente; }
+    public void setRemitente(String remitente) { this.remitente = remitente; }
 }

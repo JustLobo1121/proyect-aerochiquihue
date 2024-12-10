@@ -6,7 +6,7 @@ import java.util.Formatter;
 
 public class AssistantData {
     private String nombre, apellidos, telefono, rut, direccion, destino, tipoEncomienda, peso, fecha,avionSel, asiento;
-    private String MetodoPago;
+    private String remitente;
     private Boolean emergencia;
     private int descuento, valorFinal;
 
@@ -52,8 +52,8 @@ public class AssistantData {
     public int getValorFinal() { return valorFinal; }
     public void setValorFinal(int valorFinal) { this.valorFinal = valorFinal; }
 
-    public String getMetodoPago() { return MetodoPago; }
-    public void setMetodoPago(String MetodoPago) { this.MetodoPago = MetodoPago; }
+    public String getRemitente() { return remitente; }
+    public void setRemitente(String remitente) { this.remitente = remitente; }
 
     public String generateHash() {
         try {

@@ -42,7 +42,7 @@
             </VBox>
          </center>
       </BorderPane>
-      <BorderPane id="datosPane" fx:id="view01" prefHeight="363.0" prefWidth="600.0">
+      <BorderPane id="datosPane" fx:id="view01" prefHeight="363.0" prefWidth="600.0" visible="false">
          <bottom>
             <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
@@ -142,7 +142,7 @@
             </VBox>
          </right>
       </BorderPane>
-      <BorderPane id="datosPane" fx:id="view02" prefHeight="363.0" prefWidth="600.0" visible="false">
+      <BorderPane id="datosPane" fx:id="view02" prefHeight="363.0" prefWidth="600.0">
          <bottom>
             <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="600.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
@@ -224,14 +224,24 @@
                      </font>
                   </Label>
                   <ChoiceBox id="choiceBox1" fx:id="destinos" prefWidth="150.0" />
-                  <VBox fx:id="extrasEncomienda" alignment="CENTER" visible="false">
+                  <VBox fx:id="extrasEncomienda" alignment="CENTER">
                      <children>
                         <Label text="Peso:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="TextFieldPeso" prefHeight="25.0" prefWidth="348.0">
+                        <TextField fx:id="TextFieldPeso" prefHeight="25.0" prefWidth="250.0" scaleX="0.5">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="124.0" layoutY="10.0" text="Remitente:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TextFieldRemitente" layoutX="10.0" layoutY="37.0" prefHeight="25.0" prefWidth="250.0" scaleX="0.75">
                            <font>
                               <Font size="15.0" />
                            </font>

@@ -54,6 +54,7 @@ public class assistantController {
     @FXML private VBox extrasEncomienda;
     @FXML private TextField TextFieldNombre,TextFieldApellidos,TextFieldTelefonos;
     @FXML private TextField TextFieldRut,TextFieldDireccion,TextFieldPeso,TextFieldAvion;
+    @FXML private TextField TextFieldRemitente;
     @FXML private TextField costeTotal; // zona metodo de pago
     @FXML private ChoiceBox <String>choiceBoxMetodos; // zona metodo de pago
     @FXML private HBox HboxMetodos; // zona metodo de pago
@@ -160,6 +161,10 @@ public class assistantController {
                 this.TextFieldPeso.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                 validado += 1;
             }
+            if (this.TextFieldRemitente.getText().isEmpty() || ! this.TextFieldRemitente.getText().matches("[a-zA-Z ]+")) {
+                this.TextFieldRemitente.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+                validado += 1;
+            }
         }
         if (validado == 0) {
             if (this.boton01.isSelected()) {
@@ -174,6 +179,7 @@ public class assistantController {
             }
             if (opcion == 2) {
                 this.assistantData.setPeso(this.TextFieldPeso.getText());
+                this.assistantData.setRemitente(this.TextFieldRemitente.getText());
             }
             if (avionSel != null) {
                 generateSeat(avionSel, seatGrid);
@@ -190,6 +196,7 @@ public class assistantController {
                 this.view03.setVisible(true);
                 this.view04.setVisible(false);
             } else {
+                System.out.println("valor del remitente: " + this.assistantData.getRemitente());
                 this.view4();
             }
         }        
@@ -263,7 +270,6 @@ public class assistantController {
             switch (this.choiceBoxMetodos.getValue()) {
                 case "Efectivo":
                     if (validatePaymentFields()) {
-                        this.assistantData.setMetodoPago("Efectivo");
                         int field1Int = Integer.parseInt(this.field1.getText());
                         if (field1Int == this.Total) {
                             if (this.opcion == 1) {
@@ -291,7 +297,6 @@ public class assistantController {
                     break;
                 case "Tarjeta de Debito":
                     if (validatePaymentFields()) {
-                        this.assistantData.setMetodoPago("Tarjeta de Debito");
                         if (this.opcion == 1) {
                             DataSaver.saveViajeToDb(assistantData, asientosOcupados);
                         } else if (this.opcion == 2) {
@@ -306,7 +311,6 @@ public class assistantController {
                     break;
                 case "Tarjeta de Credito":
                     if (validatePaymentFields()) {
-                        this.assistantData.setMetodoPago("Tarjeta de Credito");
                         if (this.opcion == 1) {
                             DataSaver.saveViajeToDb(assistantData, asientosOcupados);
                         } else if (this.opcion == 2) {
@@ -321,7 +325,6 @@ public class assistantController {
                     break;
                 case "Transferencia":
                     if (validatePaymentFields()) {
-                        this.assistantData.setMetodoPago("Transferencia");
                         if (this.opcion == 1) {
                             DataSaver.saveViajeToDb(assistantData, asientosOcupados);
                         } else if (this.opcion == 2) {
@@ -341,7 +344,6 @@ public class assistantController {
 
                         if (empresa.equalsIgnoreCase("Empresa Ejemplo") && codigoCorporativo.equals("12345")) {
                             System.out.println("Pago con Crédito Corporativo aprobado para la empresa: " + empresa);
-                            this.assistantData.setMetodoPago("Credito Corporativo");
                             if (this.opcion == 1) {
                                 DataSaver.saveViajeToDb(assistantData, asientosOcupados);
                             } else if (this.opcion == 2) {

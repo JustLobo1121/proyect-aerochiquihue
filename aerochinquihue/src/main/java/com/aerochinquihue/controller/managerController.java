@@ -38,6 +38,7 @@ public class managerController {
     private TableColumn<EncomiendaData, String> fechaColEncomienda = new TableColumn<>();
     private TableColumn<EncomiendaData, String> avionColEncomienda = new TableColumn<>();
     private TableColumn<EncomiendaData, String> PesoColEncomienda = new TableColumn<>();
+    private TableColumn<EncomiendaData, String> RemitenteColEncomienda = new TableColumn<>();
     private TableColumn<EncomiendaData, String> EmergenciaColEncomienda = new TableColumn<>();
     private TableColumn<EncomiendaData, String> DescuentoColEncomienda = new TableColumn<>();
     private TableColumn<EncomiendaData, String> ValorFinalColEncomienda = new TableColumn<>();
@@ -173,6 +174,7 @@ public class managerController {
             this.fechaColEncomienda.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFecha()));
             this.avionColEncomienda.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAvionSel()));
             this.PesoColEncomienda.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPeso()));
+            this.RemitenteColEncomienda.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRemitente()));
             this.EmergenciaColEncomienda.setCellValueFactory(cellData -> new SimpleStringProperty(Boolean.toString(cellData.getValue().isEmergencia())));
             this.DescuentoColEncomienda.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getDescuento())));
             this.ValorFinalColEncomienda.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getValorFinal())));
@@ -226,10 +228,14 @@ public class managerController {
             this.fechaColEncomienda.setText("Fecha");
             this.avionColEncomienda.setText("Avion");
             this.PesoColEncomienda.setText("Peso");
+            this.RemitenteColEncomienda.setText("Remitente");
             this.EmergenciaColEncomienda.setText("Emergencia");
             this.DescuentoColEncomienda.setText("Descuento");
             this.ValorFinalColEncomienda.setText("Valor Final");
-            this.table2.getColumns().addAll(this.nombreColEncomienda, this.apellidoColEncomienda, this.teleColEncomienda, this.rutColEncomienda, this.direccionColEncomienda, this.destinoColEncomienda, this.fechaColEncomienda, this.avionColEncomienda, this.PesoColEncomienda, this.EmergenciaColEncomienda, this.DescuentoColEncomienda, this.ValorFinalColEncomienda, this.actionColEncomienda,this.eliminarColEncomienda);
+            this.table2.getColumns().addAll(this.nombreColEncomienda, this.apellidoColEncomienda, this.teleColEncomienda, this.rutColEncomienda, 
+            this.direccionColEncomienda, this.destinoColEncomienda, this.fechaColEncomienda, this.avionColEncomienda, 
+            this.PesoColEncomienda, this.RemitenteColEncomienda, this.EmergenciaColEncomienda, this.DescuentoColEncomienda, this.ValorFinalColEncomienda,
+            this.actionColEncomienda,this.eliminarColEncomienda);
         }
     }
 

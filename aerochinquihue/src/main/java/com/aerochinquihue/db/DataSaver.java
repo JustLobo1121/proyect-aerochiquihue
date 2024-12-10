@@ -34,9 +34,8 @@ public class DataSaver {
     }
 
     public static void saveEncomiendaToDb(AssistantData assistantData) {
-        String sql = "INSERT INTO EncomiendaData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, peso, emergencia, descuento, valorFinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO EncomiendaData (nombre, apellidos, telefono, rut, direccion, destino, fecha, avion, peso, remitente, emergencia, descuento, valorFinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(dbUrl); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
             pstmt.setString(1, assistantData.getNombre());
             pstmt.setString(2, assistantData.getApellidos());
             pstmt.setString(3, assistantData.getTelefono());
@@ -46,10 +45,11 @@ public class DataSaver {
             pstmt.setString(7, assistantData.getFecha());
             pstmt.setString(8, assistantData.getAvionSel());
             pstmt.setString(9, assistantData.getPeso());
-            pstmt.setBoolean(10, assistantData.isEmergencia());
-            pstmt.setInt(11, assistantData.getDescuento());
-            pstmt.setInt(12, assistantData.getValorFinal());
-
+            pstmt.setString(10, assistantData.getRemitente()); // Add this line
+            pstmt.setBoolean(11, assistantData.isEmergencia());
+            pstmt.setInt(12, assistantData.getDescuento());
+            pstmt.setInt(13, assistantData.getValorFinal());
+    
             pstmt.executeUpdate();
             System.out.println("Datos guardados exitosamente en la base de datos");
         } catch (Exception e) {

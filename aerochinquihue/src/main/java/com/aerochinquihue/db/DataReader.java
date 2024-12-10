@@ -87,6 +87,7 @@ public class DataReader {
                 data.setFecha(rs.getString("fecha"));
                 data.setAvion(rs.getString("avion"));
                 data.setPeso(rs.getString("peso"));
+                data.setRemitente(rs.getString("remitente"));
                 data.setEmergencia(rs.getBoolean("emergencia"));
                 data.setDescuento(rs.getInt("descuento"));
                 data.setValorFinal(rs.getInt("valorFinal"));
