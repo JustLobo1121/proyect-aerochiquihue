@@ -286,14 +286,22 @@ public class managerController {
     
         dialog.showAndWait().ifPresent(input -> {
             try {
-                int descuento = Integer.parseInt(input);
-                data.setDescuento(descuento);
-                data.setValorFinal(data.getValorFinal() - (data.getValorFinal() * descuento / 100));
+                int descuentoNuevo = Integer.parseInt(input);
+                int descuentoActual = data.getDescuento();
+                int descuentoDisponible = 10 - descuentoActual;
+    
+                if (descuentoNuevo < 1 || descuentoNuevo > descuentoDisponible) {
+                    showAlert("Descuento inválido", "El descuento adicional debe estar entre 1 y " + descuentoDisponible + "%.");
+                    return;
+                }
+                data.setDescuento(descuentoActual + descuentoNuevo);
+                double valuedata = data.getValorFinal() - (data.getValorFinal() * descuentoNuevo / 100.0);
+                data.setValorFinal((int)valuedata);
         
                 DataReader dataReader = new DataReader();
                 dataReader.updateEncomienda(data);
         
-                table1.refresh();
+                table2.refresh();
             } catch (NumberFormatException e) {
                 showAlert("Numero invalido","Por favor, ingrese un número válido para el descuento.");
             }

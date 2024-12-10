@@ -137,6 +137,8 @@ public class assistantController {
             this.assistantData.setDireccion(TextFieldDireccion.getText());
             if (opcion == 2) {
                 this.extrasEncomienda.setVisible(true);
+            } else {
+                this.extrasEncomienda.setVisible(false);
             }
             this.view00.setVisible(false);
             this.view01.setVisible(false);
@@ -224,7 +226,11 @@ public class assistantController {
     }
     
     @FXML public void handleAssistant4View(ActionEvent event) {
-        this.view4();
+        if (this.assistantData.getAsiento() == null) {
+            this.seatGrid.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+        } else {
+            this.view4();
+        }
     }
     
     @FXML public void initialize() {
