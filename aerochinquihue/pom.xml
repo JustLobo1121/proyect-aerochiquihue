@@ -72,7 +72,7 @@
                 <artifactId>native-maven-plugin</artifactId>
                 <configuration>
                     <buildArgs>
-                        <buildArg>-Dorg.sqlite.lib.exportPath=${project.build.directory}</buildArg>
+                        <buildArg>-Dorg.sqlite.lib.exportPath=${project.build.directory}/libs</buildArg>
                     </buildArgs>
                 </configuration>
             </plugin>
